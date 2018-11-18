@@ -19,7 +19,7 @@ import time
 import pytz
 
 from transiter.database import syncutil
-from ...utils import gtfsutil
+from transiter.utils import gtfsutil
 
 
 def update(feed, system, content):
@@ -125,16 +125,16 @@ class _NycSubwayGtfsCleaner:
             else:
                 direction = 'N'
             trip_uid = generate_trip_uid(
-                trip['trip_id'],
+                trip['id'],
                 trip['start_date'],
                 trip['route_id'],
                 direction
                 )
             # TODO: the start time here should conform to the GTFS realtime spec instead of being a timestamp
             start_time = generate_trip_start_time(
-                trip['trip_id'], trip['start_date'])
+                trip['id'], trip['start_date'])
             trip['start_time'] = start_time
-            trip['trip_id'] = trip_uid
+            trip['id'] = trip_uid
             return True
         except Exception:
             return False
