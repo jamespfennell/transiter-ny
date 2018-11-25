@@ -3,7 +3,6 @@ import datetime
 import unittest
 from unittest import mock
 from transiter_nycsubway import gtfsupdater
-from transiter.database import models
 
 
 class TestUpdate(unittest.TestCase):
@@ -16,7 +15,7 @@ class TestUpdate(unittest.TestCase):
     @mock.patch('transiter_nycsubway.gtfsupdater.syncutil')
     @mock.patch('transiter_nycsubway.gtfsupdater._NycSubwayGtfsCleaner')
     @mock.patch('transiter_nycsubway.gtfsupdater.merge_in_nyc_subway_extension_data')
-    @mock.patch('transiter_nycsubway.gtfsupdater.gtfsutil')
+    @mock.patch('transiter_nycsubway.gtfsupdater.gtfsrealtimeutil')
     def test_update__full(self, gtfsutil, merge_in_nyc_subway_extension_data,
                           _NycSubwayGtfsCleaner, syncutil):
 

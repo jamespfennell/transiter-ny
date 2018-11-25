@@ -4,7 +4,6 @@ from unittest import mock
 from transiter_nycsubway import servicestatusxmlupdater
 from transiter.database import models
 
-
 class TestServiceStatusXmlParser(unittest.TestCase):
 
     SYSTEM_ID = '11'

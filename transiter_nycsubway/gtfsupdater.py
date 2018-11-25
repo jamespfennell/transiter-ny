@@ -19,17 +19,18 @@ import time
 import pytz
 
 from transiter.database import syncutil
-from transiter.utils import gtfsutil
+from transiter.utils import gtfsrealtimeutil
 
-
+import json
 def update(feed, system, content):
     if len(content) == 0:
         return False
-    nyc_subway_gtfs_extension = gtfsutil.GtfsRealtimeExtension(
+    nyc_subway_gtfs_extension = gtfsrealtimeutil.GtfsRealtimeExtension(
         '..nyc_subway_pb2', __name__)
-    feed_data = gtfsutil.read_gtfs_realtime(content, nyc_subway_gtfs_extension)
+    feed_data = gtfsrealtimeutil.read_gtfs_realtime(content, nyc_subway_gtfs_extension)
+    #print(json.dumps(feed_data, indent=4, separators=(',', ': ')))
     feed_data = merge_in_nyc_subway_extension_data(feed_data)
-    feed_data = gtfsutil.transform_to_transiter_structure(feed_data)
+    feed_data = gtfsrealtimeutil.transform_to_transiter_structure(feed_data)
     nyc_subway_gtfs_cleaner = _NycSubwayGtfsCleaner()
     feed_data = nyc_subway_gtfs_cleaner.clean(feed_data)
     syncutil.sync_trips(feed_data)
