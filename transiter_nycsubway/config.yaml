@@ -96,6 +96,5 @@ realtime_route_service_patterns:
 
 direction_name_rules_files:
 
-  - direction_name_rules_with_track.csv
-  - direction_name_rules_with_stop_id_alias.csv
-  - direction_name_rules_basic.csv
+  - direction_name_rules_with_track_2.csv
+  - direction_name_rules_basic_2.csv
