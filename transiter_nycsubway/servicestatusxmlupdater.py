@@ -2,7 +2,7 @@ import datetime
 import re
 from xml.etree import ElementTree
 
-from transiter.database import models
+from transiter import models
 from transiter.database import syncutil
 from transiter.database.daos import route_dao, route_status_dao
 

@@ -2,7 +2,7 @@ import datetime
 import unittest
 from unittest import mock
 from transiter_nycsubway import servicestatusxmlupdater
-from transiter.database import models
+from transiter import models
 
 class TestServiceStatusXmlParser(unittest.TestCase):
 
