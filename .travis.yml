@@ -3,7 +3,7 @@ sudo: required
 dist: xenial
 python: "3.7"
 install:
-  - pip install -e .
+  - make install
   - pip install coveralls
 # command to run tests
 script:
