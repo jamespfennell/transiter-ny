@@ -1,24 +1,19 @@
 import datetime
 import re
 from xml.etree import ElementTree
+import dateutil.parser
 
 from transiter import models
-from transiter.database import syncutil
-from transiter.database.daos import route_dao, route_status_dao
+from transiter.services.update import routestatusupdater
 
-
-def update(feed, system, content):
+def update(feed, content):
 
     parser = ServiceStatusXmlParser(content)
-    data = parser.parse()
-    db_messages = route_status_dao.get_all_in_system(system.system_id)
-    route_id_to_route = {route.route_id: route
-                         for route in route_dao.list_all_in_system(system.system_id)}
-    for status in data:
-        status['routes'] = [route_id_to_route[route_id]
-                            for route_id in status['route_ids']]
-        del status['route_ids']
-    syncutil.sync(models.RouteStatus, db_messages, data, ['status_id'])
+    route_statuses = parser.parse()
+    routestatusupdater.sync_route_statuses(
+        feed.system,
+        route_statuses
+    )
     return True
 
 
@@ -30,43 +25,67 @@ class ServiceStatusXmlParser:
         self._raw_xml = raw_xml
 
     def parse(self):
-        data = []
+        route_statuses = []
         root = ElementTree.fromstring(self._raw_xml)
         situations = self._find_descendent_element(root, 'Situations')
         for situation in situations:
-            xml_tag_to_dict_key = {
-                'status_id': 'SituationNumber',
-                'status_type': 'ReasonName',
-                'status_priority': 'MessagePriority',
+            route_status = models.RouteStatus()
+            model_attr_to_xml_tag = {
+                'id': 'SituationNumber',
+                'type': 'ReasonName',
                 'message_title': 'ReasonName',
                 'message_content': 'Description',
                 'creation_time': 'CreationTime'
             }
-            situation_data = {
-                dict_key: self._get_content_in_child_element(situation, xml_tag)
-                for dict_key, xml_tag in xml_tag_to_dict_key.items()
-            }
-            situation_data['status_priority'] = int(situation_data['status_priority'])
+            for model_attr, xml_tag in model_attr_to_xml_tag.items():
+                route_status.__setattr__(
+                    model_attr,
+                    self._get_content_in_child_element(situation, xml_tag)
+                )
+            route_status.creation_time = self._time_string_to_datetime(
+                self._get_content_in_child_element(
+                    situation,
+                    'CreationTime'
+                )
+            )
+            route_status.priority = int(
+                self._get_content_in_child_element(
+                    situation,
+                    'MessagePriority'
+                ))
 
             publication_window = self._find_child_element(
                 situation, 'PublicationWindow')
-            situation_data['start_time'] = self._get_content_in_child_element(
-                publication_window, 'StartTime')
-            situation_data['end_time'] = self._get_content_in_child_element(
-                publication_window, 'EndTime')
+            route_status.start_time = self._time_string_to_datetime(
+                self._get_content_in_child_element(
+                    publication_window,
+                    'StartTime'
+                )
+            )
+            route_status.end_time = self._time_string_to_datetime(
+                self._get_content_in_child_element(
+                    publication_window,
+                    'EndTime'
+                )
+            )
 
-            for key in ('creation_time', 'end_time', 'start_time'):
-                situation_data[key] = self._time_string_to_datetime(situation_data[key])
-
-            affected_routes = []
+            route_status.route_ids = set()
             for route_string in self._get_content_in_descendent_elements(
                     situation, 'LineRef'):
                 index = route_string.rfind('_')
-                affected_routes.append(route_string[index+1:])
-            situation_data['route_ids'] = affected_routes
+                route_status.route_ids.add(route_string[index+1:])
 
-            data.append(situation_data)
-        return data
+            regex_str = '(?P<title>([A-Z]+ )*[A-Z]{2,})'
+            regex = re.compile(regex_str)
+            match = regex.match(route_status.message_content)
+            if match is not None:
+                new_title = match.group('title').capitalize()
+                new_content = route_status.message_content[len(new_title):].strip()
+                route_status.message_title = new_title
+                route_status.message_content = new_content
+
+            route_statuses.append(route_status)
+        return route_statuses
 
     @classmethod
     def _get_content_in_child_element(cls, element, tag):
@@ -93,7 +112,5 @@ class ServiceStatusXmlParser:
     def _time_string_to_datetime(time_string):
         if time_string is None:
             return None
-        # First remove any microseconds
-        time_string = re.sub('\.[0-9]+', '', time_string)
-        return datetime.datetime.fromisoformat(time_string)
+        return dateutil.parser.parse(time_string)
 

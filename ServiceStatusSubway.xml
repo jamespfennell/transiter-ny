@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?><Siri xmlns:ns2="http://www.ifopt.org.uk/acsb" xmlns="http://www.siri.org.uk/siri" xmlns:ns4="http://datex2.eu/schema/1_0/1_0" xmlns:ns3="http://www.ifopt.org.uk/ifopt"><ServiceDelivery><ResponseTimestamp>2018-12-16T11:53:02.2957256-05:00</ResponseTimestamp><SituationExchangeDelivery><ResponseTimestamp>2018-12-16T11:53:02.2957256-05:00</ResponseTimestamp><Status>true</Status><Situations>
+  <PtSituationElement>
+    <CreationTime>2018-12-16T02:06:48.577-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_ff96407b-3717-4dfe-bf4a-4954a261a609</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T10:17:00-05:00</StartTime>
+      <EndTime>2018-12-16T21:00:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">[F] train shuttle buses are detoured because of a crane operation on McDonald Av between Ditmas Av and Avenue F. All stations stops will be made.</Summary>
+    <Description xml:lang="EN">F train shuttle buses are detoured because of a crane operation on McDonald Av between Ditmas Av and Avenue F. All stations stops will be made.</Description>
+    <LongDescription>&lt;p&gt;[F] train shuttle buses are detoured because of a crane operation on McDonald Av between Ditmas Av and Avenue F. &lt;/p&gt;&lt;p&gt;All stations stops will be made.&lt;/p&gt;</LongDescription>
+    <Planned>false</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition />
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_207749</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION MAINTENANCE 10 PM Fri, Dec 14 to 5 AM Mon, Dec 17 Ozone Park/Far Rockaway-bound [A] trains stop at 163 St, 155 St and 135 St in Manhattan</Summary>
+    <Description xml:lang="EN">STATION MAINTENANCE 10 PM Fri, Dec 14 to 5 AM Mon, Dec 17 Ozone Park/Far Rockaway-bound [A] trains stop at 163 St, 155 St and 135 St in Manhattan</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(207749);&gt;&lt;b&gt;STATION MAINTENANCE&lt;br clear=left&gt;10 PM Fri, Dec 14 to 5 AM Mon, Dec 17&lt;br clear=left&gt;Ozone Park/Far Rockaway-bound [A] trains stop at 163 St, 155 St and 135 St in Manhattan&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 207749 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_A</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_208170</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS  Dec 15 - 16</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS  Dec 15 - 16</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(208170);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;/font&gt;&lt;br clear=left&gt;Dec 15 - 16&lt;/b&gt;, &lt;b&gt;Saturday &amp; Sunday&lt;br clear=left&gt;[C] Trains run every 12 minutes during the day and early evening&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 208170 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[C] trains run on a modified schedule because the downtown [A], [C] and [D] are sharing the track in Manhattan from 125 St to 59 St-Columbus Circle.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_C</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_C</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-08T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_207282</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-08T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS Dec 15 - 16, Saturday &amp; Sunday Euclid Av-bound [C] trains skip 116, 110, 103, 96, 86, 81 and 72 Sts in Manhattan</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS Dec 15 - 16, Saturday &amp; Sunday Euclid Av-bound [C] trains skip 116, 110, 103, 96, 86, 81 and 72 Sts in Manhattan</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(207282);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;br clear=left&gt;Dec 15 - 16, Saturday &amp; Sunday&lt;br clear=left&gt;Euclid Av-bound [C] trains skip 116, 110, 103, 96, 86, 81 and 72 Sts in Manhattan&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 207282 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;For service&lt;i&gt; to&lt;/i&gt; these stations, take the [C] to 59 St-Columbus Circle and transfer to a 168 St-bound [C].&lt;br&gt;&lt;br&gt;For service&lt;i&gt; from&lt;/i&gt; these stations, take the [C] to 125 St and transfer to a Euclid Av-bound [C].&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;b&gt;&lt;i&gt;Alternate travel note:&lt;br&gt;&lt;/b&gt;&lt;/i&gt;Use nearby &lt;b&gt;[1]&lt;/b&gt; stations instead via transfer at 59 St-Columbus Circle.&lt;br&gt;&lt;br&gt;&lt;b&gt;Reminder:&lt;br&gt;&lt;/b&gt;[C] Trains do not run overnight.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_C</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_207750</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-17T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 Norwood-bound [D] trains skip 155 St in Manhattan, 161 St and 170 St in the Bronx</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 Norwood-bound [D] trains skip 155 St in Manhattan, 161 St and 170 St in the Bronx</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(207750);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;br clear=left&gt;9:45 PM Fri, Dec 14 to 5 AM Mon, Dec 17&lt;br clear=left&gt;Norwood-bound [D] trains skip 155 St in Manhattan, 161 St and 170 St in the Bronx&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 207750 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;For service &lt;i&gt;to &lt;/i&gt;these stations, take the [D] to Tremont Av and transfer to a Coney Island-bound [D].&lt;br&gt;&lt;br&gt;For service &lt;i&gt;from &lt;/i&gt;these stations, take the [D] to 145 St and transfer to a Norwood-bound [D].&lt;br&gt;&lt;br&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;br&gt;167 St and 174-175 Sts are temporarily closed for renovation.&lt;br&gt;&lt;br&gt;&lt;/font&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_D</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_208165</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS Dec 15 - 16, Saturday &amp; Sunday [D] Trains run every 12 minutes, days and evenings</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS Dec 15 - 16, Saturday &amp; Sunday [D] Trains run every 12 minutes, days and evenings</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(208165);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;br clear=left&gt;Dec 15 - 16, Saturday &amp; Sunday&lt;br clear=left&gt;[D] Trains run every 12 minutes, days and evenings&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 208165 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[D] trains run on a modified schedule because the downtown [A], [C] and [D] are sharing the track in Manhattan from 125 St to 59 St-Columbus Circle.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_D</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_D</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_208125</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-17T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION IMPROVEMENTS 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 [D] Trains run via the [N] in both directions between 36 St and Stillwell Av in Brooklyn  [SB] Free shuttle buses provide alternate service</Summary>
+    <Description xml:lang="EN">STATION IMPROVEMENTS 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 [D] Trains run via the [N] in both directions between 36 St and Stillwell Av in Brooklyn  [SB] Free shuttle buses provide alternate service</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(208125);&gt;&lt;b&gt;STATION IMPROVEMENTS&lt;br clear=left&gt;9:45 PM Fri, Dec 14 to 5 AM Mon, Dec 17&lt;br clear=left&gt;[D] Trains run via the [N] in both directions between 36 St and Stillwell Av in Brooklyn&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 208125 class="plannedWorkDetail" &gt;[SB] Free shuttle buses provide alternate service&lt;br&gt;&lt;br&gt;&lt;/b&gt;No [D] service at &lt;/font&gt;&lt;b&gt;9 Av, Fort Hamilton Pkwy&lt;/b&gt;,&lt;b&gt; 50&lt;/b&gt;,&lt;b&gt; 55&lt;/b&gt;,&lt;b&gt; 62&lt;/b&gt;,&lt;b&gt; 71&lt;/b&gt;,&lt;b&gt; 79 Sts&lt;/b&gt;,&lt;b&gt; 18 Av&lt;/b&gt;,&lt;b&gt; 20 Av&lt;/b&gt;,&lt;b&gt; Bay Pkwy&lt;/b&gt;,&lt;b&gt; 25 Av &lt;br&gt;&lt;/b&gt;and&lt;b&gt; Bay 50 St&lt;/b&gt;.&lt;br&gt;&lt;br&gt;[SB] Buses run between &lt;b&gt;36 St&lt;/b&gt; and &lt;b&gt;Stillwell Av&lt;/b&gt; &lt;i&gt;making all stops&lt;/i&gt;.&lt;br&gt;&lt;br&gt;Transfer between [D] [N] trains and [SB] buses at 36 St, 62 St-New Utrecht Av (Manhattan-bound only)&lt;br&gt;or Stillwell Av.&lt;br&gt;&lt;br&gt;&lt;font size=3&gt;&lt;b&gt;&lt;a style="cursor:pointer; text-decoration:underline;" onclick=ShowHide(2081250);&gt;Show Shuttle Bus Stops&lt;/a&gt;&lt;/b&gt;&lt;/font&gt;&lt;div id="2081250"; style="display:none;"&gt;&lt;table class=plannedworkTableStyle  border=1 cellspacing=1 cellpadding=3 rules=rows frame=hsides&gt;&lt;tr bgcolor=#FAF8CC&gt;&lt;td&gt; [D] &lt;b&gt;Station&lt;/b&gt;&lt;td&gt;&lt;b&gt;Shuttle Bus Stop&lt;/b&gt;&lt;br&gt;&lt;tr&gt;&lt;td&gt;36 St [D] [N] [R]&lt;td&gt;4 Av at 36 St&lt;br&gt;&lt;tr&gt;&lt;td&gt;9 Av&lt;td&gt;39 St at 9 Av&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Fort Hamilton Pkwy&lt;td&gt;New Utrecht Av at 45 St (to 36 St)&lt;tr&gt;&lt;td&gt;New Utrecht Av at Fort Hamilton Pkwy (to Stillwell Av)&lt;br&gt;&lt;tr&gt;&lt;td&gt;50 St&lt;td&gt;New Utrecht Av at 12 Av&lt;br&gt;&lt;tr&gt;&lt;td&gt;55 St&lt;td&gt;New Utrecht Av at 55 St&lt;br&gt;&lt;tr&gt;&lt;td&gt;62 St-New Utrecht Av&lt;br&gt;[D] [N] (Manhattan-bound only)&lt;td&gt;New Utrecht Av at 62 St&lt;br&gt;&lt;tr&gt;&lt;td&gt;71 St&lt;td&gt;New Utrecht Av at 71 St&lt;br&gt;&lt;tr&gt;&lt;td&gt;79 St&lt;td&gt;New Utrecht Av at 79 St&lt;br&gt;&lt;tr&gt;&lt;td&gt;18 Av&lt;td&gt;New Utrecht Av at 18 Av&lt;br&gt;&lt;tr&gt;&lt;td&gt;20 Av&lt;td&gt;86 St at 20 Av&lt;br&gt;&lt;tr&gt;&lt;td&gt;Bay Pkwy&lt;td&gt;86 St at Bay Pkwy&lt;br&gt;&lt;tr&gt;&lt;td&gt;25 Av&lt;td&gt;86 St at 25 Av&lt;br&gt;&lt;tr&gt;&lt;td&gt;Bay 50 St&lt;td&gt;Stillwell Av at Bay 50 St&lt;br&gt;&lt;tr&gt;&lt;td&gt;Stillwell Av [D] [N] [Q]&lt;td&gt;Stillwell Av at Surf Av&lt;/table&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_D</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_D</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_207757</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-24T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">ELECTRICAL IMPROVEMENTS Dec 15 - 17</Summary>
+    <Description xml:lang="EN">ELECTRICAL IMPROVEMENTS Dec 15 - 17</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(207757);&gt;&lt;b&gt;ELECTRICAL IMPROVEMENTS&lt;br clear=left&gt;Dec 15 - 17  &lt;/b&gt;&amp;bull;&lt;b&gt;  Dec 22 - 24&lt;br clear=left&gt;12:01 AM Sat to 5 AM Mon&lt;br clear=left&gt;[E] Trains run local in Queens&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 207757 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;Trains stop at 36 St, Steinway St, 46 St, Northern Blvd, 65 St, Roosevelt, Elmhurst, Grand Avs, Woodhaven Blvd, 63 Dr and 67 Av.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_E</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_E</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_207751</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-17T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">TRACK MAINTENANCE 1145 PM Fri, Dec 14 to 5 AM Mon, Dec 17 [E] Service between Briarwood and Jamaica Center in Queens is replaced by [SB] free shuttle buses</Summary>
+    <Description xml:lang="EN">TRACK MAINTENANCE 1145 PM Fri, Dec 14 to 5 AM Mon, Dec 17 [E] Service between Briarwood and Jamaica Center in Queens is replaced by [SB] free shuttle buses</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(207751);&gt;&lt;b&gt;TRACK MAINTENANCE&lt;br clear=left&gt;11:45 PM Fri, Dec 14 to 5 AM Mon, Dec 17&lt;br clear=left&gt;[E] Service between Briarwood and Jamaica Center in Queens is replaced by [SB] free shuttle buses &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 207751 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;&lt;/font&gt;[E] Trains run between *&lt;b&gt;World Trade Center&lt;/b&gt; and &lt;b&gt;Briarwood&lt;/b&gt; and via the [F] &lt;i&gt;to/from&lt;/i&gt; 179 St.&lt;br&gt;&lt;br&gt;[SB] Buses run between &lt;b&gt;Union Tpke&lt;/b&gt; and &lt;b&gt;Jamaica Center&lt;/b&gt;, stopping at Briarwood, Jamaica-Van Wyck and Sutphin Blvd/Archer Av.&lt;br&gt;&lt;br&gt;&amp;bull; Transfer between [E] trains and [SB] buses at Union Tpke or Briarwood. &lt;br&gt;&lt;br&gt;&lt;font size=3&gt;&lt;b&gt;&lt;a style="cursor:pointer; text-decoration:underline;" onclick=ShowHide(2077510);&gt;Show Shuttle Bus Stops&lt;/a&gt;&lt;/b&gt;&lt;/font&gt;&lt;div id="2077510"; style="display:none;"&gt;&lt;br&gt;&lt;table class=plannedworkTableStyle  border=1 cellspacing=1 cellpadding=3 rules=rows frame=hsides&gt;&lt;tr&gt;&lt;td bgcolor=FAF8CC&gt;&lt;b&gt;Station&lt;/b&gt;&lt;td bgcolor=FAF8CC&gt;&lt;b&gt;Shuttle Bus Stop&lt;/b&gt;&lt;td bgcolor=FAF8CC&gt;&lt;b&gt;Bus Stop&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td&gt; Jamaica Center [ad] [J]&lt;td&gt;Archer Av at 153 St&lt;td&gt; &amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Sutphin Blvd-Archer Av [ad] [J]&lt;td&gt;Archer Av at Sutphin Blvd&lt;td&gt;&lt;b&gt;Q30, Q60&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Jamaica-Van Wyck&lt;td&gt;Metropolitan Av at Kew Gardens Rd (to Union Tpke) &lt;td&gt;&lt;b&gt;Q54&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Van Wyck Expwy at 89 Av (to Jamaica Center) &lt;td&gt;&lt;b&gt;Q24&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Briarwood [E] [F]&lt;font size=1&gt; (to/from 179 St only)&lt;td&gt;Van Wyck Blvd at Queens Blvd&lt;td&gt; &amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Union Tpke [ad] [E] [F]&lt;td&gt;Queens Blvd at Union Tpke&lt;td&gt;&lt;b&gt;Q60&lt;/b&gt;&lt;/table&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;&lt;i&gt;Alternate travel notes&lt;/b&gt;&lt;/i&gt;:&lt;br&gt;For service between Manhattan and JFK Airport, take the [A] instead.&lt;br&gt;For service between Manhattan and Jamaica Center, consider the [A] and [J] via transfer at Broadway Junction.&lt;br&gt;&lt;br&gt;&lt;i&gt;*Overnight [E] trains are rerouted via the [R] in Manhattan.&lt;br&gt;&lt;br&gt;&lt;/i&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_E</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_E</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>noService</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_209708</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-17T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS 1145 PM Fri, Dec 14 to 4 AM Mon, Dec 17 [F] Trains skip 21 St-Queensbridge, Roosevelt Island and Lexington Av/63 St in both directions Rerouted [E] and [R] trains provide alternate service</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS 1145 PM Fri, Dec 14 to 4 AM Mon, Dec 17 [F] Trains skip 21 St-Queensbridge, Roosevelt Island and Lexington Av/63 St in both directions Rerouted [E] and [R] trains provide alternate service</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(209708);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;br clear=left&gt;11:45 PM Fri, Dec 14 to 4 AM Mon, Dec 17&lt;br clear=left&gt;[F] Trains skip 21 St-Queensbridge, Roosevelt Island and Lexington Av/63 St in both directions&lt;br clear=left&gt;Rerouted [E] and [R] trains provide alternate service&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 209708 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[F] Trains run via the [E] between Roosevelt Av, Queens and 5 Av/53 St, Manhattan.&lt;br&gt;&lt;br&gt;&lt;/font&gt;[R] Trains are rerouted and stop at 21 St-Queensbridge, Roosevelt Island and Lexington Av/63 St &lt;i&gt;days and evenings&lt;/i&gt;, rerouted [E] trains make these stops&lt;i&gt; overnight&lt;/i&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;Travel Alternatives:&lt;br&gt;&lt;/b&gt;&lt;/font&gt;For &lt;b&gt;21 St-Queensbridge&lt;/b&gt;, &lt;b&gt;Roosevelt Island&lt;/b&gt; and &lt;b&gt;Lexington Av/63 St&lt;/b&gt;,&lt;b&gt; &lt;/b&gt;take the [R] &lt;i&gt;days/evenings&lt;/i&gt; or the [E] overnight.&lt;br&gt;&lt;br&gt;Transfer at Roosevelt Av or 34 St-Herald Sq.&lt;br&gt;&lt;br&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;br&gt;57 St is temporarily closed for renovation.&lt;br&gt;&lt;br&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_207758</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-24T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">ELECTRICAL IMPROVEMENTS Dec 15 - 17   &amp;149  Dec 22 - 24  1201 AM Sat to 5 AM Mon [F] Trains run local in both directions in Queens</Summary>
+    <Description xml:lang="EN">ELECTRICAL IMPROVEMENTS Dec 15 - 17   &amp;149  Dec 22 - 24  1201 AM Sat to 5 AM Mon [F] Trains run local in both directions in Queens</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(207758);&gt;&lt;b&gt;ELECTRICAL IMPROVEMENTS&lt;br clear=left&gt;Dec 15 - 17  &lt;/font&gt;&amp;bull;  Dec 22 - 24&lt;br clear=left&gt;12:01 AM Sat to 5 AM Mon&lt;br clear=left&gt;[F] Trains run local in both directions in Queens&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 207758 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;Trains stop at 67 Av, 63 Dr, Woodhaven Blvd, Grand, Elmhurst, Roosevelt Avs, 65 St, Northern Blvd, 46, Steinway and 36 Sts&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-11-23T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_205517</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-11-23T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-17T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">TRACK REPLACEMENT From 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17  [F] Service between Church Av and Stillwell Av in Brooklyn is replaced by [SB] free shuttle buses</Summary>
+    <Description xml:lang="EN">TRACK REPLACEMENT From 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17  [F] Service between Church Av and Stillwell Av in Brooklyn is replaced by [SB] free shuttle buses</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(205517);&gt;&lt;b&gt;TRACK REPLACEMENT&lt;br clear=left&gt;From 9:45 PM Fri, Dec 14 to 5 AM Mon, Dec 17 &lt;br clear=left&gt;[F] Service between Church Av and Stillwell Av in Brooklyn is replaced by [SB] free shuttle buses &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 205517 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[F] Trains run between &lt;b&gt;179 St&lt;/b&gt; and &lt;b&gt;Church Av&lt;/b&gt;.&lt;br&gt;&lt;br&gt;[SB] Buses run between &lt;b&gt;Church Av&lt;/b&gt; and &lt;b&gt;Stillwell Av*&lt;/b&gt;, stopping at Ditmas Av, 18 Av, Avenue I, Bay Pkwy, Avenue N, Avenue P, Kings Hwy, Avenue U, Avenue X, Neptune Av and W 8 St.&lt;br&gt;&lt;br&gt;Transfer between [F] trains and [SB] buses at Church Av.&lt;br&gt;&lt;br&gt;For direct service between Coney Island and Manhattan/Downtown Brooklyn, take the [D] [N] or [Q] instead.&lt;br&gt;&lt;br&gt;Transfer at Stillwell Av [D] [N] [Q] [SB] or West 8 St [Q] [SB].&lt;br&gt;&lt;br&gt;&lt;font size=3&gt;&lt;b&gt;&lt;a style="cursor:pointer; text-decoration:underline;" onclick=ShowHide(2055170);&gt;Show Shuttle Bus Stops&lt;/a&gt;&lt;/b&gt;&lt;/font&gt;&lt;div id="2055170"; style="display:none;"&gt;&lt;br&gt;&lt;table class=plannedworkTableStyle  border=1 cellspacing=1 cellpadding=3 rules=rows frame=hsides&gt;&lt;tr bgcolor=#FAF8CC&gt;&lt;td&gt;&lt;b&gt;Station&lt;/b&gt;&lt;/td&gt;&lt;td&gt;[SB] &lt;b&gt;Shuttle Bus Stop&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Bus Stop&lt;/b&gt;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Church Av  [ad] [F] [G] &lt;td&gt;McDonald Av at Church Av &lt;td&gt;&lt;b&gt;B67&lt;/b&gt;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Ditmas Av&lt;td&gt;McDonald Av at Ditmas Av&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;18 Av&lt;td&gt;McDonald Av at 18 Av&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Avenue I&lt;td&gt;McDonald Av at Avenue I&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Bay Pkwy&lt;td&gt;McDonald Av at Bay Pkwy&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Avenue N&lt;td&gt;McDonald Av at 24 Av (to Stillwell Av)&lt;tr&gt;&lt;td&gt;McDonald Av at Ave N (to Church Av)&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Avenue P&lt;td&gt;McDonald Av at Avenue P&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Kings Hwy&lt;td&gt;McDonald Av at Kings Hwy&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Avenue U&lt;td&gt;McDonald Av at Avenue U&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Avenue X&lt;td&gt;Shell Rd at Avenue X (to Stillwell Av)&lt;td&gt;&lt;b&gt;B4&lt;/b&gt;&lt;tr&gt;&lt;td&gt;McDonald Av at Avenue X (to Church Av)&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Neptune Av&lt;td&gt;Shell Rd at Neptune Av (to Stillwell Av)&lt;td&gt;&amp;mdash;&lt;tr&gt;&lt;td&gt;W 6 St at station entrance (to Church Av)&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;W 8 St [Q]&lt;td&gt;Surf Av at W 8 St&lt;td&gt;&lt;b&gt;B36&lt;/b&gt;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Stillwell Av [ad] [D] [N] [Q]&lt;td&gt;Stillwell Av at Surf Av&lt;td&gt;&lt;b&gt;B36&lt;/b&gt;&lt;/table&gt;&lt;/div&gt; &lt;br&gt;&lt;br&gt;&lt;i&gt;*From 8 AM to 10 PM Saturday and Sunday, some buses will only operate between Church Av and Kings Hwy.&lt;br&gt;&lt;/i&gt;&lt;/font&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_F</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>noService</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_208421</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-17T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">TRACK MAINTENANCE 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 [G] Service between Bedford Nostrand Avs and Court Sq is replaced by [SB] free shuttle buses</Summary>
+    <Description xml:lang="EN">TRACK MAINTENANCE 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 [G] Service between Bedford Nostrand Avs and Court Sq is replaced by [SB] free shuttle buses</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(208421);&gt;&lt;b&gt;TRACK MAINTENANCE&lt;br clear=left&gt;9:45 PM Fri, Dec 14 to 5 AM Mon, Dec 17&lt;br clear=left&gt;[G] Service between Bedford Nostrand Avs and Court Sq is replaced by [SB] free shuttle buses&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 208421 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[G] Trains run between &lt;b&gt;Church Av&lt;/b&gt; and &lt;b&gt;Bedford-Nostrand Avs&lt;/b&gt;.&lt;br&gt;&lt;br&gt; &amp;bull; Transfer between [G] trains and [SB] buses at Bedford-Nostrand Avs.&lt;br&gt;&lt;br&gt;&lt;font size=3&gt;&lt;b&gt;&lt;a style="cursor:pointer; text-decoration:underline;" onclick=ShowHide(2084210);&gt;Show Shuttle Bus Stops&lt;/a&gt;&lt;/b&gt;&lt;/font&gt;&lt;div id="2084210"; style="display:none;"&gt;&lt;br&gt;&lt;table class=plannedworkTableStyle  border=1 cellspacing=1 cellpadding=3 rules=rows frame=hsides&gt;&lt;tr&gt;&lt;td bgcolor=#FAF8CC&gt;&lt;b&gt;Station&lt;/b&gt;&lt;td bgcolor=#FAF8CC&gt;&lt;b&gt;Shuttle Bus Stop&lt;/b&gt;&lt;td bgcolor=#FAF8CC&gt;&lt;b&gt;Bus&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Court Sq [7] &lt;br&gt; [ad] &lt;font size=1&gt;&lt;b&gt;7&lt;/b&gt; &lt;i&gt;only&lt;/i&gt;&lt;/font&gt;&lt;td&gt;Jackson Av at 45 Av&lt;td&gt;&lt;b&gt;B62&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Jackson Av at 23 St&lt;td&gt;&lt;b&gt;B62&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;21 St&lt;td&gt;Jackson Av at 47 Av (to Bedford-Nostrand Avs)&lt;td&gt;&lt;b&gt;B62&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Jackson Av at 21 St (to Court Sq)&lt;td&gt; &lt;b&gt;B62&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Greenpoint Av&lt;td&gt;Manhattan Av at Greenpoint Av (to Bedford-Nostrand Avs)    &lt;td&gt;&lt;b&gt;B43&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Greenpoint Av at Leonard St (to Court Sq)&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Nassau Av&lt;td&gt;Manhattan Av at Nassau Av (to Bedford-Nostrand Avs)&lt;td&gt;&lt;b&gt;B62&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Bedford Av at Manhattan Av (to Court Sq)&lt;td&gt;&lt;b&gt;B62&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Metropolitan Av&lt;br&gt;([L] at Lorimer St)&lt;td&gt;Union Av at Metropolitan Av&lt;td&gt;&lt;b&gt;Q59&lt;br&gt;&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Broadway&lt;td&gt;Union Av at Broadway&lt;td&gt; &amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Flushing Av&lt;td&gt;Lee Av at Flushing Av (to Bedford-Nostrand Avs)&lt;td&gt;&lt;b&gt;B44&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Union Av at Gerry St (to Court Sq)&lt;td&gt;&amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Myrtle-Willoughby Avs&lt;td&gt;Nostrand Av at Myrtle Av (to Bedford-Nostrand Avs)&lt;td&gt;&lt;b&gt;B44&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Marcy Av at Myrtle Av (to Court Sq)&lt;td&gt; &amp;mdash;&lt;br&gt;&lt;tr&gt;&lt;td&gt;Bedford-Nostrand Avs &lt;br&gt;[GS] &lt;font size =1&gt;(&lt;i&gt;to/from&lt;/i&gt; Church Av)&lt;/font&gt;&lt;td&gt;Lafayette Av at Nostrand Av&lt;td&gt;&lt;b&gt;B38&lt;/b&gt;&lt;/table&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Note:&lt;br&gt;&lt;/b&gt;Church Av-bound platform at Greenpoint Av is temporarily closed for renovation.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_G</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_G</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>noService</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_209687</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">TRACK REPLACEMENT Dec 15 - 16, Sat  and  Sun, 7 AM to 7 PM [L] Service operates in two sections at a reduced frequency 1. Every 8 minutes between 8 Av, Manhattan and Broadway Junction 2. Every 24 minutes between Broadway Junction and Rockaway Pkwy</Summary>
+    <Description xml:lang="EN">TRACK REPLACEMENT Dec 15 - 16, Sat  and  Sun, 7 AM to 7 PM [L] Service operates in two sections at a reduced frequency 1. Every 8 minutes between 8 Av, Manhattan and Broadway Junction 2. Every 24 minutes between Broadway Junction and Rockaway Pkwy</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(209687);&gt;&lt;b&gt;TRACK REPLACEMENT&lt;br clear=left&gt;Dec 15 - 16, Sat &lt;i&gt;and&lt;/i&gt; Sun, 7 AM to 7 PM&lt;br clear=left&gt;[L] Service operates in two sections at a reduced frequency:&lt;br clear=left&gt;1. Every 8 minutes between 8 Av, Manhattan and Broadway Junction&lt;br clear=left&gt;2. Every 24 minutes between Broadway Junction and Rockaway Pkwy&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 209687 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;&amp;bull; Transfer at &lt;b&gt;Broadway Junction&lt;/b&gt; to continue your trip.&lt;br&gt;&lt;br&gt;&lt;/font&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_L</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_L</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_210591</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2019-01-07T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">TRACK REPLACEMENT Weekends from 945 PM Fri to 5 AM Mon, until Jan 7 [M] Service between Metropolitan Av in Queens and Essex St in Manhattan is replaced by [J] trains and [SB] free shuttle buses</Summary>
+    <Description xml:lang="EN">TRACK REPLACEMENT Weekends from 945 PM Fri to 5 AM Mon, until Jan 7 [M] Service between Metropolitan Av in Queens and Essex St in Manhattan is replaced by [J] trains and [SB] free shuttle buses</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(210591);&gt;&lt;b&gt;TRACK REPLACEMENT&lt;br clear=left&gt;Weekends from 9:45 PM Fri to 5 AM Mon, until Jan 7&lt;br clear=left&gt;[M] Service between Metropolitan Av in Queens and Essex St in Manhattan is replaced by [J] trains and [SB] free shuttle buses&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 210591 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[SB] Buses run between &lt;b&gt;Metropolitan Av&lt;/b&gt; and &lt;b&gt;Myrtle Av &lt;/b&gt; (Broadway), &lt;i&gt;making all station stops&lt;/i&gt;.&lt;br&gt;  &amp;bull; Transfer between [SB] and [J] trains at Myrtle Av.&lt;br&gt;&lt;br&gt;&lt;/font&gt;[J]* Trains provide alternate service between &lt;b&gt;Myrtle Av&lt;/b&gt; (Broadway) and &lt;b&gt;Essex St&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;font size=3&gt;&lt;b&gt;&lt;a style="cursor:pointer; text-decoration:underline;" onclick=ShowHide(2105910);&gt;Show Shuttle Bus Stops&lt;/a&gt;&lt;/b&gt;&lt;/font&gt;&lt;div id="2105910"; style="display:none;"&gt;&lt;br&gt;&lt;table class=plannedworkTableStyle  border=1 cellspacing=1 cellpadding=3 rules=rows frame=hsides&gt;&lt;tr&gt;&lt;td bgcolor=FAF8CC&gt;&lt;b&gt;[M] Station&lt;/b&gt;&lt;td bgcolor=FAF8CC&gt;&lt;b&gt;Shuttle Bus Stop&lt;/b&gt;&lt;td bgcolor=FAF8CC&gt;&lt;b&gt;Bus&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Metropolitan Av&lt;td&gt;Metropolitan Av at Rentar Plaza&lt;td&gt;&lt;b&gt;Q58&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Fresh Pond Rd&lt;td&gt;Putnam Av at Fresh Pond Rd (to Myrtle Av)&lt;td&gt;&lt;b&gt;B20&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Fresh Pond Rd at Putnam Av (to Metropolitan Av)&lt;td&gt;&lt;b&gt;Q58&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Forest Av&lt;td&gt;Putnam Av at Fairview Av (to Myrtle Av)&lt;td&gt;&lt;b&gt;B20&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Fairview Av at Putnam Av (to Metropolitan Av)&lt;td&gt;&lt;b&gt;Q58&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Seneca Av&lt;td&gt;Seneca Av at Palmetto St&lt;td&gt;&lt;b&gt;B38&lt;/b&gt;&lt;tr&gt;&lt;td rowspan=2&gt;Myrtle-Wyckoff Avs  [ad]  [L]  &lt;td&gt;Gates Av at Wyckoff Av (to Myrtle Av)&lt;td&gt;&lt;b&gt;B13&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Palmetto St at Myrtle Av (to Metropolitan Av)&lt;td&gt;&lt;b&gt;Q58&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Knickerbocker Av&lt;td&gt;Myrtle Av at Knickerbocker Av&lt;td&gt;&lt;b&gt;B54&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Central Av&lt;td&gt;Myrtle Av at DeKalb Av (to Metropolitan Av)&lt;td&gt;&lt;b&gt;B54&lt;/b&gt;&lt;tr&gt;&lt;td&gt;Myrtle Av  [J]&lt;td&gt;Broadway at Myrtle Av&lt;td&gt;&lt;b&gt;B46&lt;/b&gt;&lt;/table&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;i&gt;*Please review [J] advisories for additional information that may affect your trip Dec 15, 16, 22 &amp; 23.&lt;br&gt;&lt;br&gt;&lt;/i&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_M</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_M</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>noService</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_210847</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION IMPROVEMENTS Dec 15 - 16, Saturday &amp; Sunday [N] Trains run every 12 minutes, days and evenings</Summary>
+    <Description xml:lang="EN">STATION IMPROVEMENTS Dec 15 - 16, Saturday &amp; Sunday [N] Trains run every 12 minutes, days and evenings</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(210847);&gt;&lt;b&gt;STATION IMPROVEMENTS&lt;br clear=left&gt;Dec 15 - 16, Saturday &amp; Sunday&lt;br clear=left&gt;[N] Trains run every 12 minutes, days and evenings&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 210847 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;Because the [D] and [N] share the same track between 36 St and 59 St.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_N</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_N</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>altered</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-14T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_208117</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-14T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-24T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 Astoria-bound [N] trains skip 36 Av and 30 Av in Queens</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS 945 PM Fri, Dec 14 to 5 AM Mon, Dec 17 Astoria-bound [N] trains skip 36 Av and 30 Av in Queens</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(208117);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;br clear=left&gt;9:45 PM Fri, Dec 14 to 5 AM Mon, Dec 17&lt;br clear=left&gt;Astoria-bound [N] trains skip 36 Av and 30 Av in Queens&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 208117 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;For service&lt;i&gt; to&lt;/i&gt; these stations, take the [N] to Astoria Blvd and transfer to a Coney Island-bound [N].&lt;br&gt;&lt;br&gt;For service&lt;i&gt; from &lt;/i&gt;these stations, take the [N] to Queensboro Plaza and transfer to an Astoria-bound [N].&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;b&gt;Note:&lt;/b&gt; &lt;br&gt;39 Av and Broadway are temporarily closed for renovation.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_N</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-15T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_209794</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-15T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">STATION ENHANCEMENTS Dec 15 - 16, Saturday &amp; Sunday [R] Trains skip 5 Av/59 St, Lexington Av/59 St, Manhattan and Queens Plaza, Queens in both directions</Summary>
+    <Description xml:lang="EN">STATION ENHANCEMENTS Dec 15 - 16, Saturday &amp; Sunday [R] Trains skip 5 Av/59 St, Lexington Av/59 St, Manhattan and Queens Plaza, Queens in both directions</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(209794);&gt;&lt;b&gt;STATION ENHANCEMENTS&lt;br clear=left&gt;Dec 15 - 16, Saturday &amp; Sunday&lt;br clear=left&gt;[R] Trains skip 5 Av/59 St, Lexington Av/59 St, Manhattan and Queens Plaza, Queens in both directions&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 209794 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;[R] Trains run in both directions between 57 St-7 Av [Q] and 21 St-Queensbridge [F], making stops at Lexington Av/63 St and Roosevelt Island, resuming normal service at 36 St, Queens.&lt;br&gt;&lt;br&gt;&lt;b&gt;Travel Alternatives:&lt;br&gt;&lt;/b&gt;For &lt;b&gt;5 Av/59 St&lt;/b&gt; and &lt;b&gt;Lexington Av/59 St&lt;/b&gt;, take the [N] instead.&lt;br&gt;&lt;br&gt;For &lt;b&gt;Queens Plaza&lt;/b&gt;, take the [E] or [F]* instead.&lt;br&gt;&lt;br&gt;Transfer between trains at 57 St-7 Av [N] [R], Times Sq-42 St/Port Authority [E] [N] or 34 St-Herald Sq [F] [N] or Roosevelt Av [E] [F].&lt;br&gt;&lt;br&gt;&lt;i&gt;*This detour has taken into account additional planned service changes.&lt;br&gt;&lt;br&gt;&lt;/i&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_R</LineRef>
+          <DirectionRef>1</DirectionRef>
+        </AffectedVehicleJourney>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_R</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+  <PtSituationElement>
+    <CreationTime>2018-12-16T00:00:00-05:00</CreationTime>
+    <SituationNumber>
+                  MTA NYCT_212634</SituationNumber>
+    <PublicationWindow>
+      <StartTime>2018-12-16T00:00:00-05:00</StartTime>
+      <EndTime>2018-12-16T23:59:00-05:00</EndTime>
+    </PublicationWindow>
+    <Summary xml:lang="EN">URGENT REPAIRS Dec 16, Sunday, 545 AM to 5 PM  Forest Hills-bound [R] trains run via the [Q] from DeKalb Av in Brooklyn to Canal St in Manhattan</Summary>
+    <Description xml:lang="EN">URGENT REPAIRS Dec 16, Sunday, 545 AM to 5 PM  Forest Hills-bound [R] trains run via the [Q] from DeKalb Av in Brooklyn to Canal St in Manhattan</Description>
+    <LongDescription>&lt;a class="plannedWorkDetailLink" onclick=ShowHide(212634);&gt;&lt;b&gt;URGENT REPAIRS&lt;br clear=left&gt;Dec 16, Sunday, 5:45 AM to 5 PM&lt;br clear=left&gt;&lt;/font&gt;Forest Hills-bound [R] trains run via the [Q] from DeKalb Av in Brooklyn to Canal St in Manhattan&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;div id= 212634 class="plannedWorkDetail" &gt;&lt;br&gt;&lt;/b&gt;For service &lt;i&gt;to&lt;/i&gt; &lt;b&gt;Jay St-MetroTech&lt;/b&gt;, &lt;b&gt;Court&lt;/b&gt;, &lt;b&gt;Whitehall&lt;/b&gt;, &lt;b&gt;Rector&lt;/b&gt;, &lt;b&gt;Cortlandt Sts&lt;/b&gt; and &lt;b&gt;City Hall&lt;/b&gt;, use nearby [4] stations. Transfer between trains at Atlantic Av-Barclays Ctr.&lt;br&gt;&lt;br&gt;For service &lt;i&gt;from&lt;/i&gt; these stations, take the [R] to Atlantic Av-Barclays Ctr and transfer to a Forest Hills-bound [R].&lt;br&gt;&lt;br&gt;&lt;/font&gt;[ad] This service change affects one or more ADA stations.&lt;br&gt;&lt;b&gt;&lt;br&gt;&lt;/div&gt;&lt;/b&gt;&lt;br/&gt;</LongDescription>
+    <Planned>true</Planned>
+    <ReasonName>Planned Work</ReasonName>
+    <MessagePriority>
+                  1
+                </MessagePriority>
+    <Source>
+      <SourceType>directReport</SourceType>
+    </Source>
+    <Affects>
+      <VehicleJourneys>
+        <AffectedVehicleJourney>
+          <LineRef>
+                      MTA NYCT_R</LineRef>
+          <DirectionRef>0</DirectionRef>
+        </AffectedVehicleJourney>
+      </VehicleJourneys>
+    </Affects>
+    <Consequences>
+      <Consequence>
+        <Condition>diverted</Condition>
+        <Severity>undefined</Severity>
+      </Consequence>
+    </Consequences>
+  </PtSituationElement>
+</Situations></SituationExchangeDelivery></ServiceDelivery></Siri>
