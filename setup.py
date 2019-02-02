@@ -6,10 +6,10 @@ setup(
     packages=find_packages(),
     install_requires = [
         'python-dateutil',
-        'transiter==0.1dev'
+#        'transiter==0.1dev'
     ],
-    dependency_links=[
-        'https://github.com/jamespfennell/transiter/tarball/master#egg=transiter-0.1dev'
-    ],
+#    dependency_links=[
+#        'https://github.com/jamespfennell/transiter/tarball/master#egg=transiter-0.1dev'
+#    ],
     license='MIT',
 )
