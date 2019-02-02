@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Transiter NYC Subway package',
+    name='transiter_nycsubway',
     version='0.1dev',
     packages=find_packages(),
     install_requires = [
