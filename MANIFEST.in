@@ -1,1 +1,3 @@
 include transiter_nycsubway/config.yaml
+include transiter_nycsubway/agencydata/*
+include transiter_nycsubway/customdata/*
