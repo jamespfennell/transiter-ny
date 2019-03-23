@@ -68,9 +68,10 @@ class TestMergeInExtensionData(unittest.TestCase):
                 {
                     'trip_update': {
                         'trip': {
-                            'train_id': self.TRAIN_ID,
                             'direction_id': self.DIRECTION_ID,
-                            'status': self.STATUS_RUNNING
+                        },
+                        'vehicle': {
+                            'id': self.TRAIN_ID,
                         },
                         'stop_time_update': [
                             {
@@ -126,12 +127,14 @@ class TestMergeInExtensionData(unittest.TestCase):
             'header': {},
             'entity': [
                 {
-                    'vehicle': {
-                        'trip': {
-                            'train_id': self.TRAIN_ID,
-                            'direction_id': None,
-                            'status': self.STATUS_SCHEDULED
-                        },
+                    'vehicle': { # This is the VehiclePosition
+                        'trip': {},
+                        'vehicle': { # This is the VehicleDescriptor
+                            'id': self.TRAIN_ID,
+                        }
+                            #'direction_id': None,
+                            #'status': self.STATUS_SCHEDULED
+                        #},
                     }
                 }
             ]

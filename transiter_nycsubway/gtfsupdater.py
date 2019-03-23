@@ -89,7 +89,7 @@ def transform_basic_data(trip):
         return True
     except Exception as e:
         # TODO: PyCharm is right: classify the exceptions that can occur here
-        print('Could not parse {}'.format(trip.id))
+        #print('Could not parse {}'.format(trip.id))
         return False
 
 
@@ -124,6 +124,11 @@ def delete_first_stu_in_slow_updating_trips(trip):
         first_stop_time = first_stu.arrival_time
     else:
         first_stop_time = first_stu.departure_time
+
+    if trip.last_update_time is None or first_stop_time is None:
+        print('Buggy')
+        print(trip, trip.last_update_time, first_stop_time, trip.stop_events)
+        return False
 
     if (trip.last_update_time - first_stop_time).total_seconds() > 15:
         trip.stop_events.pop(0)

@@ -1,0 +1,70 @@
+
+[prerequisites]
+
+packages = ['transiter_nycsubway']
+settings = ['mta_api_key']
+
+
+[details]
+
+name = 'New York City Subway'
+
+
+[feeds]
+
+    [feeds.gtfsstatic]
+    url = "http://web.mta.info/developers/data/nyct/subway/google_transit.zip"
+    parser = "gtfsstatic"
+    # Right now, install_requires is only supported with the gtfsstatic parser
+    required_for_install = true
+    file_upload_fallback = "gtfs_static_data_file"
+    auto_update = true
+    auto_update_period = "1 day"
+
+    [feeds.ServiceStatus]
+    url = "http://web.mta.info/status/ServiceStatusSubway.xml"
+    parser = "transiter_nycsubway.servicestatusxmlupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.L]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=2"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+
+[service_maps]
+
+    [service_maps.any_time]
+    source = 'schedule'
+    threshold = 0.1
+    use_for_stops_in_route = true
+
+    [service_maps.weekday_day]
+    source = 'schedule'
+    conditions = {weekday = true, starts_later_than = 7, ends_earlier_than = 19}
+    threshold = 0.1
+    use_for_routes_at_stop = true
+
+    [service_maps.weekday_night]
+    source = 'schedule'
+    conditions = {weekday = true, starts_later_than = 0, ends_earlier_than = 6}
+    threshold = 0.1
+
+    [service_maps.weekend]
+    source = 'schedule'
+    conditions = {weekend = true, starts_later_than = 7, ends_earlier_than = 19}
+    threshold = 0.1
+
+    [service_maps.realtime]
+    source = 'realtime'
+
+
+[direction_names]
+
+file_uploads = [
+    'direction_name_rules_with_track',
+    'direction_name_rules_basic'
+]
+

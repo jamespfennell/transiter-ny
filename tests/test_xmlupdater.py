@@ -84,44 +84,14 @@ class TestServiceStatusXmlParser(unittest.TestCase):
         parser = servicestatusxmlupdater.ServiceStatusXmlParser(self.XML)
         actual_data = parser.parse()
 
-        self.assertListEqual(actual_data, self.PARSED_DATA)
+        expected_model = models.RouteStatus()
+        expected_model.id = self.STATUS_ID
+        expected_model.type = self.MESSAGE_TITLE
+        expected_model.priority = self.STATUS_PRIORITY
+        expected_model.message_title = self.MESSAGE_TITLE
+        expected_model.message_content = self.MESSAGE_CONTENT
+        expected_model.start_time = self.START_TIME
+        expected_model.creation_time = self.CREATION_TIME
 
-    MODULE = 'transiter_nycsubway.servicestatusxmlupdater.'
-
-    @mock.patch(MODULE+'route_status_dao')
-    @mock.patch(MODULE+'route_dao')
-    @mock.patch(MODULE+'syncutil.sync')
-    @mock.patch(MODULE+'ServiceStatusXmlParser')
-    def test_update(self, ServiceStatusXmlParser, sync, route_dao, route_status_dao):
-        """[NYC Subway XML updater] Update process"""
-        parser = mock.MagicMock()
-        parser.parse.return_value = self.PARSED_DATA
-        ServiceStatusXmlParser.return_value = parser
-
-        db_messages = mock.MagicMock()
-        route_status_dao.get_all_in_system.return_value = db_messages
-
-        route_one = mock.MagicMock()
-        route_one.route_id = self.ROUTE_ONE
-        route_two = mock.MagicMock()
-        route_two.route_id = self.ROUTE_TWO
-        route_dao.list_all_in_system.return_value = [route_one, route_two]
-
-        xml = mock.MagicMock()
-        system = mock.MagicMock()
-        system.system_id = self.SYSTEM_ID
-
-        transformed_data = self.PARSED_DATA[0].copy()
-        del transformed_data['route_ids']
-        transformed_data['routes'] = [route_one, route_two]
-
-        servicestatusxmlupdater.update(mock.MagicMock(), system, xml)
-
-        ServiceStatusXmlParser.assert_called_once_with(xml)
-        parser.parse.assert_called_once_with()
-        route_status_dao.get_all_in_system.assert_called_once_with(self.SYSTEM_ID)
-        route_dao.list_all_in_system.assert_called_once_with(self.SYSTEM_ID)
-        sync.assert_called_once_with(
-            models.RouteStatus, db_messages, [transformed_data], ['status_id'])
-
+        self.assertListEqual([expected_model], actual_data)
 
