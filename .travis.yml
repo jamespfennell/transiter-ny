@@ -5,6 +5,7 @@ python: "3.7"
 install:
   - make install
   - pip install -r dev-requirements.txt
+  - pip install -e git+https://github.com/jamespfennell/transiter.git#egg=transiter
   - pip install coveralls
 # command to run tests
 script:
