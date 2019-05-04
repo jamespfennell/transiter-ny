@@ -2,7 +2,6 @@
 transiter
 *pyc
 venv
-venv2
 .coverage
 .idea
 docs/_build
@@ -10,3 +9,4 @@ transiter/systems/nycsubway/config.yaml
 *.egg-info
 build
 dist
+.coverage
