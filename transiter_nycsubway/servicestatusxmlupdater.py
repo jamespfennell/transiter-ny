@@ -4,21 +4,18 @@ from xml.etree import ElementTree
 import dateutil.parser
 
 from transiter import models
-from transiter.services.update import routestatusupdater
+from transiter.services.update import alertupdater
 
-def update(feed, content):
+# TODO: regression with NAME (Explanation) header
 
+def update(feed_update, content):
     parser = ServiceStatusXmlParser(content)
-    route_statuses = parser.parse()
-    routestatusupdater.sync_route_statuses(
-        feed.system,
-        route_statuses
-    )
+    alerts = parser.parse()
+    alertupdater.sync_alerts(feed_update.feed.system, alerts)
     return True
 
 
 class ServiceStatusXmlParser:
-
     NAMESPACE = '{http://www.siri.org.uk/siri}'
 
     def __init__(self, raw_xml):
@@ -29,26 +26,27 @@ class ServiceStatusXmlParser:
         root = ElementTree.fromstring(self._raw_xml)
         situations = self._find_descendent_element(root, 'Situations')
         for situation in situations:
-            route_status = models.RouteStatus()
+            alert = models.Alert()
             model_attr_to_xml_tag = {
                 'id': 'SituationNumber',
-                'type': 'ReasonName',
-                'message_title': 'ReasonName',
-                'message_content': 'Description',
+                'header': 'ReasonName',
+                'description': 'Description',
                 'creation_time': 'CreationTime'
             }
             for model_attr, xml_tag in model_attr_to_xml_tag.items():
-                route_status.__setattr__(
+                alert.__setattr__(
                     model_attr,
                     self._get_content_in_child_element(situation, xml_tag)
                 )
-            route_status.creation_time = self._time_string_to_datetime(
+            if alert.description is None:
+                alert.description = ''
+            alert.creation_time = self._time_string_to_datetime(
                 self._get_content_in_child_element(
                     situation,
                     'CreationTime'
                 )
             )
-            route_status.priority = int(
+            alert.priority = int(
                 self._get_content_in_child_element(
                     situation,
                     'MessagePriority'
@@ -56,41 +54,63 @@ class ServiceStatusXmlParser:
 
             publication_window = self._find_child_element(
                 situation, 'PublicationWindow')
-            route_status.start_time = self._time_string_to_datetime(
+            alert.start_time = self._time_string_to_datetime(
                 self._get_content_in_child_element(
                     publication_window,
                     'StartTime'
                 )
             )
-            route_status.end_time = self._time_string_to_datetime(
+            alert.end_time = self._time_string_to_datetime(
                 self._get_content_in_child_element(
                     publication_window,
                     'EndTime'
                 )
             )
 
-            route_status.route_ids = set()
+            alert.route_ids = set()
             for route_string in self._get_content_in_descendent_elements(
                     situation, 'LineRef'):
                 index = route_string.rfind('_')
-                route_status.route_ids.add(route_string[index+1:])
+                alert.route_ids.add(route_string[index + 1:])
 
             regex_str = '(?P<title>([A-Z]+ )*[A-Z]{2,})'
             regex = re.compile(regex_str)
-            match = regex.match(route_status.message_content)
+
+            match = regex.match(alert.description)
             if match is not None:
                 new_title = match.group('title').capitalize()
-                new_content = route_status.message_content[len(new_title):].strip()
-                route_status.message_title = new_title
-                route_status.message_content = new_content
+                new_content = alert.description[len(new_title):].strip()
+                alert.header = new_title
+                alert.description = new_content
+                alert.header += ' ({})'.format(new_title)
 
-            route_statuses.append(route_status)
+            delay = 'delay' in alert.description.lower()
+            if not delay:
+                for condition in self._get_content_in_descendent_elements(
+                        situation, 'Condition'):
+                    if 'delay' in condition.lower():
+                        delay = True
+
+            if delay:
+                alert.effect = alert.Effect.SIGNIFICANT_DELAYS
+            else:
+                alert.effect = alert.Effect.MODIFIED_SERVICE
+
+            planned = self._get_content_in_child_element(situation, 'Planned') == 'true'
+            if planned:
+                alert.cause = alert.Cause.MAINTENANCE
+            else:
+                alert.cause = alert.Cause.ACCIDENT
+
+            route_statuses.append(alert)
         return route_statuses
 
     @classmethod
     def _get_content_in_child_element(cls, element, tag):
         child_element = cls._find_child_element(element, tag)
         if child_element is None:
+            return None
+        if child_element.text is None:
             return None
         return child_element.text.strip()
 
@@ -106,6 +126,8 @@ class ServiceStatusXmlParser:
     @classmethod
     def _get_content_in_descendent_elements(cls, element, tag):
         for descendent in element.iter(cls.NAMESPACE + tag):
+            if descendent is None or descendent.text is None:
+                continue
             yield descendent.text.strip()
 
     @staticmethod
@@ -113,4 +135,3 @@ class ServiceStatusXmlParser:
         if time_string is None:
             return None
         return dateutil.parser.parse(time_string)
-

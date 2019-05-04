@@ -1,24 +1,7 @@
 from transiter.services.update import tripupdater, gtfsrealtimeutil
+from transiter_nycsubway import gtfs_realtime_pb2
+from transiter_nycsubway import nyct_subway_pb2
 
-
-def update(feed, content):
-    if len(content) == 0:
-        return False
-    nyc_subway_gtfs_extension = gtfsrealtimeutil.GtfsRealtimeExtension(
-        '..nyc_subway_pb2', __name__)
-    gtfs_data = gtfsrealtimeutil.read_gtfs_realtime(content, nyc_subway_gtfs_extension)
-    merge_in_nyc_subway_extension_data(gtfs_data)
-    (feed_time, route_ids, trips) = gtfsrealtimeutil.transform_to_transiter_structure(
-        gtfs_data, 'America/New_York')
-    trip_data_cleaner = tripupdater.TripDataCleaner(
-        [transform_basic_data,
-         fix_route_ids,
-         delete_old_scheduled_trips(feed_time),
-         delete_first_stu_in_slow_updating_trips],
-        [invert_j_train_direction_in_bushwick]
-    )
-    cleaned_trips = trip_data_cleaner.clean(trips)
-    tripupdater.sync_trips(feed.system, route_ids, cleaned_trips)
 
 
 def merge_in_nyc_subway_extension_data(data):
@@ -29,11 +12,11 @@ def merge_in_nyc_subway_extension_data(data):
         trip = None
         if 'trip_update' in entity:
             main_entity = entity['trip_update']
-            #trip = entity['trip_update']['trip']
-            stop_time_updates = entity['trip_update']['stop_time_update']
+            # trip = entity['trip_update']['trip']
+            stop_time_updates = entity['trip_update'].get('stop_time_update', [])
         elif 'vehicle' in entity:
             main_entity = entity['vehicle']
-            #trip = entity['vehicle']['trip']
+            # trip = entity['vehicle']['trip']
         else:
             continue
         trip = main_entity['trip']
@@ -68,12 +51,13 @@ def merge_in_nyc_subway_extension_data(data):
     return data
 
 
-def transform_basic_data(trip):
+# TODO: nah
+def transform_basic_data(__, trip):
     try:
         # The time is encoded in hundreths of a minute after midnight
         # according to MTA documentation
         time_string = trip.id[:trip.id.find('_')]
-        seconds_since_midnight = (int(time_string)//10)*6
+        seconds_since_midnight = (int(time_string) // 10) * 6
         trip.start_time = trip.start_time.replace(
             second=seconds_since_midnight % 60,
             minute=(seconds_since_midnight // 60) % 60,
@@ -85,15 +69,27 @@ def transform_basic_data(trip):
             direction = 'S'
         else:
             direction = 'N'
-        trip.id = trip.route_id + direction + str(int(trip.start_time.timestamp()))
+        old_trip_id = trip.id
+        #trip.id = trip.route_id + direction + str(int(trip.start_time.timestamp()))
+        #print('{} -> {}'.format(old_trip_id, trip.id))
         return True
     except Exception as e:
         # TODO: PyCharm is right: classify the exceptions that can occur here
-        #print('Could not parse {}'.format(trip.id))
+        # print('Could not parse {}'.format(trip.id))
         return False
 
 
-def fix_route_ids(trip):
+def duplicate_stops_problem(__, trip):
+
+    stop_ids = set()
+    for stop_time in trip.stop_times:
+        if stop_time.stop_id in stop_ids:
+            print('duplicates!: {}'.format([stop_time.stop_id for stop_time in trip.stop_times]))
+            raise Exception('duplicates!: {}'.format([stop_time.stop_id for stop_time in trip.stop_times]))
+
+    return True
+
+def fix_route_ids(__, trip):
     if trip.route_id == '5X':
         trip.route_id = '5'
     if trip.route_id == '' or trip.route_id == 'SS':
@@ -101,25 +97,22 @@ def fix_route_ids(trip):
     return True
 
 
-def delete_old_scheduled_trips(reference_time):
-
-    def trip_cleaner(trip):
-        if trip.current_status != 'SCHEDULED':
-            return True
-        if (reference_time - trip.start_time).total_seconds() > 300:
-            return False
+def delete_old_scheduled_trips(feed_update, trip):
+    reference_time = feed_update.feed_time
+    if trip.current_status != 'SCHEDULED':
         return True
+    if (reference_time - trip.start_time).total_seconds() > 300:
+        return False
+    return True
 
-    return trip_cleaner
 
-
-def delete_first_stu_in_slow_updating_trips(trip):
-    if len(trip.stop_events) < 2:
+def delete_first_stu_in_slow_updating_trips(__, trip):
+    if len(trip.stop_times) < 2:
         return True
     if trip.last_update_time is None:
         return True
 
-    first_stu = trip.stop_events[0]
+    first_stu = trip.stop_times[0]
     if first_stu.arrival_time is not None:
         first_stop_time = first_stu.arrival_time
     else:
@@ -127,16 +120,16 @@ def delete_first_stu_in_slow_updating_trips(trip):
 
     if trip.last_update_time is None or first_stop_time is None:
         print('Buggy')
-        print(trip, trip.last_update_time, first_stop_time, trip.stop_events)
+        print(trip, trip.last_update_time, first_stop_time, trip.stop_times)
         return False
 
     if (trip.last_update_time - first_stop_time).total_seconds() > 15:
-        trip.stop_events.pop(0)
+        trip.stop_times.pop(0)
     return True
 
 
 # TODO: only apply this in the JZ feed
-def invert_j_train_direction_in_bushwick(stop_time_update):
+def invert_j_train_direction_in_bushwick(__, stop_time_update):
     route_id = stop_time_update.trip.route_id
     if route_id != 'J' and route_id != 'Z':
         return True
@@ -150,3 +143,24 @@ def invert_j_train_direction_in_bushwick(stop_time_update):
     stop_time_update.stop_id = stop_id[:3] + flipper[stop_id[3]]
     return True
 
+
+trip_data_cleaner = tripupdater.TripDataCleaner(
+    [transform_basic_data,
+     fix_route_ids,
+     duplicate_stops_problem,
+     delete_old_scheduled_trips,
+     delete_first_stu_in_slow_updating_trips],
+    [invert_j_train_direction_in_bushwick]
+)
+
+
+def route_ids_function(feed, route_ids):
+    return route_ids
+
+
+update = gtfsrealtimeutil.create_parser(
+    gtfs_realtime_pb2,
+    merge_in_nyc_subway_extension_data,
+    trip_data_cleaner,
+    route_ids_function
+)

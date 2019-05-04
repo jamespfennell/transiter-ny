@@ -14,21 +14,80 @@ name = 'New York City Subway'
 
     [feeds.gtfsstatic]
     url = "http://web.mta.info/developers/data/nyct/subway/google_transit.zip"
+    built_in_parser = "GTFS_STATIC"
     parser = "gtfsstatic"
     # Right now, install_requires is only supported with the gtfsstatic parser
     required_for_install = true
     file_upload_fallback = "gtfs_static_data_file"
-    auto_update = true
+    auto_update = false
     auto_update_period = "1 day"
 
     [feeds.ServiceStatus]
     url = "http://web.mta.info/status/ServiceStatusSubway.xml"
+    custom_parser = "transiter_nycsubway.servicestatusxmlupdater:update"
     parser = "transiter_nycsubway.servicestatusxmlupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.123456]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=1"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.7]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=51"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.ACE]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=26"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.BDFM]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=21"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.G]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=31"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.JZ]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=36"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
     auto_update = true
     auto_update_period = "5 seconds"
 
     [feeds.L]
     url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=2"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.NQRW]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=16"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
+    parser = "transiter_nycsubway.gtfsupdater:update"
+    auto_update = true
+    auto_update_period = "5 seconds"
+
+    [feeds.SIR]
+    url = "http://datamine.mta.info/mta_esi.php?key={mta_api_key}&feed_id=11"
+    custom_parser = "transiter_nycsubway.gtfsupdater:update"
     parser = "transiter_nycsubway.gtfsupdater:update"
     auto_update = true
     auto_update_period = "5 seconds"
@@ -59,6 +118,8 @@ name = 'New York City Subway'
 
     [service_maps.realtime]
     source = 'realtime'
+    use_for_stops_in_route = true
+    use_for_routes_at_stop = true
 
 
 [direction_names]
