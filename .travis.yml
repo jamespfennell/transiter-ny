@@ -1,7 +1,7 @@
 language: python
-sudo: required
+# sudo: required
 dist: xenial
-python: "3.7"
+python: "3.6"
 install:
   - pip install .
   - pip install -r dev-requirements.txt
