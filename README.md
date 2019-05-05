@@ -15,7 +15,7 @@ install the Python package contained in this repository:
 
     pip install transiter_nycsubway
 
-Next, download all of the files in the config directory of ths repository
+Next, download all of the files in the config directory of this repository
 to the computer from which you will be installing the transit system.
 It may be easiest to just clone the repo. 
 
@@ -40,20 +40,17 @@ The configuration contains some sane defaults:
   (2) night-time, (3) weekend and (4) all times.
   
 - A fifth service map is constructed using the realtime data.
-  Given that in the subway a route's service map can change drastically
+  Given that an NYC subway routes' service map can change drastically
   due to planned work,
   this is really useful.
 
-- At stops, the daytime and realtime service maps are shown.
+- For stops, the daytime and realtime service maps are shown.
   For routes, the all times and realtime service maps are shown.
   
 Of course everything can be changed by playing with the TOML file.
 
 
 ## License note
-
-All original code in this repository 
-is released under the MIT license.
 
 The GTFS Realtime proto-buffers Python module is vendorized inside the package in
 the
@@ -64,6 +61,9 @@ released under the Apache license.
 New York City Transit's GTFS Realtime feed extension is also included inside
 the package in the `nyct-subway.proto` and `nyct_subway_pb2.py` files. 
 I'm currently having conversations with the MTA about the license of these.
+
+All other code in this repository is original and
+is released under the MIT license.
 
 ## Q&A for the curious
 
