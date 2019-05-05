@@ -1,18 +1,20 @@
 import datetime
 import unittest
-from unittest import mock
-from transiter_nycsubway import servicestatusxmlupdater
+
 from transiter import models
+
+from transiter_nycsubway import servicestatusxmlupdater
+
 
 class TestServiceStatusXmlParser(unittest.TestCase):
 
-    SYSTEM_ID = '11'
-    STATUS_ID = '1'
-    MESSAGE_TITLE = '2'
-    MESSAGE_CONTENT = '3'
+    SYSTEM_ID = "11"
+    STATUS_ID = "1"
+    MESSAGE_TITLE = "2"
+    MESSAGE_CONTENT = "3"
     STATUS_PRIORITY = 4
-    ROUTE_ONE = 'M'
-    ROUTE_TWO = 'SI'
+    ROUTE_ONE = "M"
+    ROUTE_TWO = "SI"
     CREATION_TIME = datetime.datetime.fromtimestamp(5)
     START_TIME = datetime.datetime.fromtimestamp(6)
     END_TIME = None
@@ -57,41 +59,44 @@ class TestServiceStatusXmlParser(unittest.TestCase):
     </ServiceDelivery>
     </Siri>
     """.format(
-        creation_time = CREATION_TIME.isoformat(),
-        start_time = START_TIME.isoformat(),
-        status_id = STATUS_ID,
-        message_content = MESSAGE_CONTENT,
-        message_title = MESSAGE_TITLE,
+        creation_time=CREATION_TIME.isoformat(),
+        start_time=START_TIME.isoformat(),
+        status_id=STATUS_ID,
+        message_content=MESSAGE_CONTENT,
+        message_title=MESSAGE_TITLE,
         status_priority=STATUS_PRIORITY,
-        route_one = ROUTE_ONE,
-        route_two = ROUTE_TWO
+        route_one=ROUTE_ONE,
+        route_two=ROUTE_TWO,
     )
 
-    PARSED_DATA = [{
-        'status_id': STATUS_ID,
-        'status_type': MESSAGE_TITLE,
-        'status_priority': STATUS_PRIORITY,
-        'message_title': MESSAGE_TITLE,
-        'message_content': MESSAGE_CONTENT,
-        'creation_time': CREATION_TIME,
-        'start_time': START_TIME,
-        'end_time': None,
-        'route_ids': [ROUTE_ONE, ROUTE_TWO]
-    }]
+    PARSED_DATA = [
+        {
+            "status_id": STATUS_ID,
+            "status_type": MESSAGE_TITLE,
+            "status_priority": STATUS_PRIORITY,
+            "message_title": MESSAGE_TITLE,
+            "message_content": MESSAGE_CONTENT,
+            "creation_time": CREATION_TIME,
+            "start_time": START_TIME,
+            "end_time": None,
+            "route_ids": [ROUTE_ONE, ROUTE_TWO],
+        }
+    ]
 
     def test_parse(self):
         """[NYC Subway XML updater] XML parser"""
         parser = servicestatusxmlupdater.ServiceStatusXmlParser(self.XML)
         actual_data = parser.parse()
 
-        expected_model = models.RouteStatus()
-        expected_model.id = self.STATUS_ID
-        expected_model.type = self.MESSAGE_TITLE
-        expected_model.priority = self.STATUS_PRIORITY
-        expected_model.message_title = self.MESSAGE_TITLE
-        expected_model.message_content = self.MESSAGE_CONTENT
-        expected_model.start_time = self.START_TIME
-        expected_model.creation_time = self.CREATION_TIME
+        expected_alert = models.Alert()
+        expected_alert.id = self.STATUS_ID
+        expected_alert.type = self.MESSAGE_TITLE
+        expected_alert.priority = self.STATUS_PRIORITY
+        expected_alert.cause = models.Alert.Cause.ACCIDENT
+        expected_alert.effect = models.Alert.Effect.MODIFIED_SERVICE
+        expected_alert.description = self.MESSAGE_CONTENT
+        expected_alert.header = self.MESSAGE_TITLE
+        expected_alert.start_time = self.START_TIME
+        expected_alert.creation_time = self.CREATION_TIME
 
-        self.assertListEqual([expected_model], actual_data)
-
+        self.assertListEqual([expected_alert], actual_data)
