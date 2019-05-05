@@ -260,7 +260,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip = models.Trip()
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.delete_first_stu_in_slow_updating_trips(self.feed_update, trip)
+        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
 
         self.assertEqual([stop_time_update], trip.stop_times)
 
@@ -272,7 +272,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.last_update_time = None
         trip.stop_times.extend([stu_1, stu_2])
 
-        gtfsupdater.delete_first_stu_in_slow_updating_trips(self.feed_update, trip)
+        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
 
         self.assertEqual([stu_1, stu_2], trip.stop_times)
 
@@ -286,7 +286,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.last_update_time = self.DATETIME_1
         trip.stop_times.extend([stu_1, stu_2])
 
-        gtfsupdater.delete_first_stu_in_slow_updating_trips(self.feed_update, trip)
+        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
 
         self.assertEqual([stu_1, stu_2], trip.stop_times)
 
@@ -298,6 +298,6 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.last_update_time = self.DATETIME_4
         trip.stop_times.extend([stu_1, stu_2])
 
-        gtfsupdater.delete_first_stu_in_slow_updating_trips(self.feed_update, trip)
+        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
 
         self.assertEqual([stu_2], trip.stop_times)
