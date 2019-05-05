@@ -13,7 +13,7 @@ Assumptions:
 First, in the same Python environment that Transiter is or will be running,
 install the Python package contained in this repository:
 
-    pip install transiter_nycsubway
+    pip install transiter-nycsubway
 
 Next, download all of the files in the config directory of this repository
 to the computer from which you will be installing the transit system.
@@ -24,7 +24,7 @@ The following curl
 command makes the necessary HTTP request to install the system with ID `nycsubway`:
 
     curl -X PUT $TRANSITER_SERVER/systems/nycsubway \
-        -F 'mta_api_key=<YOUR MTA API KEY>' \
+        -F 'mta_api_key=$YOUR_MTA_API_KEY' \
         -F 'config_file=@nyc_subway_transiter_config.toml' \
         -F 'direction_name_rules_basic=@nyc_subway_direction_name_rules_basic.csv' \
         -F 'direction_name_rules_with_track=@nyc_subway_direction_name_rules_with_track.csv'
