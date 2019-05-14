@@ -33,6 +33,10 @@ def merge_in_nyc_subway_extension_data(data):
             main_entity["vehicle"] = {"id": train_id}
 
         direction = nyct_trip_data.get("direction", None)
+        # NOTE: it seems the NYCT direction is NORTH if it's missing.
+        # TODO: May be more robust to infer it from the trip ID.
+        if direction is None:
+            direction = "NORTH"
         if direction is not None:
             trip["direction_id"] = direction == "SOUTH"
 
@@ -55,6 +59,7 @@ def merge_in_nyc_subway_extension_data(data):
     return data
 
 
+# TODO: probably this is not needed
 def duplicate_stops_problem(__, trip):
 
     stop_ids = set()
@@ -82,25 +87,21 @@ def delete_old_scheduled_trips(feed_update, trip):
     return True
 
 
-def delete_first_stop_time_in_slow_updating_trips(__, trip):
-    if len(trip.stop_times) < 2:
+def fix_current_stop_sequence(__, trip):
+    current_stop_id = trip.current_stop_id
+    if current_stop_id is None or len(current_stop_id) > 3:
         return True
-    if trip.last_update_time is None:
+    offset = None
+    for stop_time in trip.stop_times:
+        if stop_time.stop_id[0:3] == current_stop_id:
+            trip.current_stop_id = stop_time.stop_id
+            offset = trip.current_stop_sequence - stop_time.stop_sequence
+            break
+    if offset is None:
+        # TODO: we should possibly return False here as this is a buggy trip
         return True
-
-    first_stu = trip.stop_times[0]
-    if first_stu.arrival_time is not None:
-        first_stop_time = first_stu.arrival_time
-    else:
-        first_stop_time = first_stu.departure_time
-
-    if trip.last_update_time is None or first_stop_time is None:
-        print("Buggy")
-        print(trip, trip.last_update_time, first_stop_time, trip.stop_times)
-        return False
-
-    if (trip.last_update_time - first_stop_time).total_seconds() > 15:
-        trip.stop_times.pop(0)
+    for stop_time in trip.stop_times:
+        stop_time.stop_sequence += offset
     return True
 
 
@@ -121,7 +122,7 @@ trip_data_cleaner = tripupdater.TripDataCleaner(
         fix_route_ids,
         duplicate_stops_problem,
         delete_old_scheduled_trips,
-        delete_first_stop_time_in_slow_updating_trips,
+        fix_current_stop_sequence
     ],
     [invert_j_train_direction_in_bushwick],
 )
