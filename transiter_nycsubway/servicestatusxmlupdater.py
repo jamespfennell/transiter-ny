@@ -74,7 +74,6 @@ class ServiceStatusXmlParser:
             if match is not None:
                 new_title = match.group("title").capitalize()
                 new_content = alert.description[len(new_title) :].strip()
-                alert.header = new_title
                 alert.description = new_content
                 alert.header += " ({})".format(new_title)
 
