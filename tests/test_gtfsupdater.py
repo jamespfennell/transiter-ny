@@ -102,11 +102,12 @@ class TestMergeInExtensionData(unittest.TestCase):
             "entity": [
                 {
                     "vehicle": {  # This is the VehiclePosition
-                        "trip": {},
+                        "trip": {
+                            "direction_id": False
+                        },
                         "vehicle": {  # This is the VehicleDescriptor
                             "id": self.TRAIN_ID
                         }
-                        #'direction_id': None,
                         #'status': self.STATUS_SCHEDULED
                         # },
                     }
@@ -254,50 +255,3 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
     DATETIME_3 = datetime.datetime(2018, 11, 5, 13, 0, 20)
     DATETIME_4 = datetime.datetime(2018, 11, 5, 13, 0, 30)
 
-    def test_delete_first_stop_event_slow_updating_trips__one_stop_id(self):
-        """[NYC Subway cleaner] Delete slow updating trips - one stop case"""
-        stop_time_update = models.TripStopTime()
-        trip = models.Trip()
-        trip.stop_times.append(stop_time_update)
-
-        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
-
-        self.assertEqual([stop_time_update], trip.stop_times)
-
-    def test_delete_first_stop_event_slow_updating_trips__no_update_time(self):
-        """[NYC Subway cleaner] Delete slow updating trips - no update time"""
-        stu_1 = models.TripStopTime(stop_sequence=1)
-        stu_2 = models.TripStopTime(stop_sequence=2)
-        trip = models.Trip()
-        trip.last_update_time = None
-        trip.stop_times.extend([stu_1, stu_2])
-
-        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
-
-        self.assertEqual([stu_1, stu_2], trip.stop_times)
-
-    def test_delete_first_stop_event_slow_updating_trips__first_stop_in_the_future(
-        self
-    ):
-        """[NYC Subway cleaner] Delete slow updating trips - first stop in the future"""
-        stu_1 = models.TripStopTime(stop_sequence=1, departure_time=self.DATETIME_4)
-        stu_2 = models.TripStopTime(stop_sequence=2)
-        trip = models.Trip()
-        trip.last_update_time = self.DATETIME_1
-        trip.stop_times.extend([stu_1, stu_2])
-
-        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
-
-        self.assertEqual([stu_1, stu_2], trip.stop_times)
-
-    def test_delete_first_stop_event_slow_updating_trips__stale(self):
-        """[NYC Subway cleaner] Delete slow updating trips - stale data"""
-        stu_1 = models.TripStopTime(stop_sequence=1, departure_time=self.DATETIME_1)
-        stu_2 = models.TripStopTime(stop_sequence=2)
-        trip = models.Trip()
-        trip.last_update_time = self.DATETIME_4
-        trip.stop_times.extend([stu_1, stu_2])
-
-        gtfsupdater.delete_first_stop_time_in_slow_updating_trips(self.feed_update, trip)
-
-        self.assertEqual([stu_2], trip.stop_times)
