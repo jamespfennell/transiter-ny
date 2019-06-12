@@ -128,8 +128,11 @@ trip_data_cleaner = tripupdater.TripDataCleaner(
 )
 
 
-def route_ids_function(__, route_ids):
-    return route_ids
+def route_ids_function(feed, route_ids):
+    feed_id_to_routes = {
+        'JZ': ['J', 'Z']
+    }
+    return feed_id_to_routes.get(feed.id, route_ids)
 
 
 update = gtfsrealtimeutil.create_parser(

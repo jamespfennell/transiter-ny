@@ -97,7 +97,7 @@ name = 'New York City Subway'
 
     [service_maps.any_time]
     source = 'schedule'
-    threshold = 0.1
+    threshold = 0.05
     use_for_stops_in_route = true
 
     [service_maps.weekday_day]
