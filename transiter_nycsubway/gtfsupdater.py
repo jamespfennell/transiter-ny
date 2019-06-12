@@ -129,8 +129,17 @@ trip_data_cleaner = tripupdater.TripDataCleaner(
 
 
 def route_ids_function(feed, route_ids):
+    # TODO: this will eventually not be needed when Transiter source feature is made
     feed_id_to_routes = {
-        'JZ': ['J', 'Z']
+        '123456': ['1', '2', '3', '4', '5', '5X', '6', '6X', 'GS'],
+        'JZ': ['J', 'Z'],
+        'BDFM': ['B', 'D', 'F', 'M'],
+        'ACE': ['A', 'C', 'E', 'H', 'FS'],
+        'NQRW': ['N', 'Q', 'R', 'W'],
+        'L': ['L'],
+        'G': ['G'],
+        'SIR': ['SI'],
+        '7': ['7', '7X']
     }
     return feed_id_to_routes.get(feed.id, route_ids)
 
