@@ -194,12 +194,12 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
 
         self.assertTrue(response)
 
-    def test_invert_j_train_direction_in_bushwick(self):
-        """[NYC Subway cleaner] Invert J train direction in Bushwick N->S"""
+    def test_invert_m_train_direction_in_bushwick(self):
+        """[NYC Subway cleaner] Invert M train direction in Bushwick N->S"""
         stop_time_update = models.TripStopTime()
         stop_time_update.stop_id = "M12N"
         trip = models.Trip()
-        trip.route_id = "J"
+        trip.route_id = "M"
         trip.stop_times.append(stop_time_update)
 
         gtfsupdater.invert_m_train_direction_in_bushwick(
@@ -208,12 +208,12 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
 
         self.assertEqual("M12S", stop_time_update.stop_id)
 
-    def test_invert_j_train_direction_in_bushwick_two(self):
-        """[NYC Subway cleaner] Invert J train direction in Bushwick S->N"""
+    def test_invert_m_train_direction_in_bushwick_two(self):
+        """[NYC Subway cleaner] Invert M train direction in Bushwick S->N"""
         stop_time_update = models.TripStopTime()
         stop_time_update.stop_id = "M12S"
         trip = models.Trip()
-        trip.route_id = "J"
+        trip.route_id = "M"
         trip.stop_times.append(stop_time_update)
 
         gtfsupdater.invert_m_train_direction_in_bushwick(
@@ -222,12 +222,12 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
 
         self.assertEqual("M12N", stop_time_update.stop_id)
 
-    def test_invert_j_train_direction_in_bushwick_irrelevant_stop(self):
-        """[NYC Subway cleaner] Invert J train direction in Bushwick, irrelevant stop"""
+    def test_invert_m_train_direction_in_bushwick_irrelevant_stop(self):
+        """[NYC Subway cleaner] Invert M train direction in Bushwick, irrelevant stop"""
         stop_time_update = models.TripStopTime()
         stop_time_update.stop_id = "M20N"
         trip = models.Trip()
-        trip.route_id = "J"
+        trip.route_id = "M"
         trip.stop_times.append(stop_time_update)
 
         gtfsupdater.invert_m_train_direction_in_bushwick(
@@ -236,12 +236,12 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
 
         self.assertEqual("M20N", stop_time_update.stop_id)
 
-    def test_invert_j_train_direction_in_bushwick_irrelevant_route(self):
-        """[NYC Subway cleaner] Invert J train direction in Bushwick, irrelevant route"""
+    def test_invert_m_train_direction_in_bushwick_irrelevant_route(self):
+        """[NYC Subway cleaner] Invert M train direction in Bushwick, irrelevant route"""
         stop_time_update = models.TripStopTime()
         stop_time_update.stop_id = "M12N"
         trip = models.Trip()
-        trip.route_id = "A"
+        trip.route_id = "J"
         trip.stop_times.append(stop_time_update)
 
         gtfsupdater.invert_m_train_direction_in_bushwick(
