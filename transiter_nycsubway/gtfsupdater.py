@@ -105,12 +105,12 @@ def fix_current_stop_sequence(__, trip):
     return True
 
 
-def invert_j_train_direction_in_bushwick(__, stop_time_update):
+def invert_m_train_direction_in_bushwick(__, stop_time_update):
     route_id = stop_time_update.trip.route_id
-    if route_id != "J" and route_id != "Z":
+    if route_id != "M":
         return True
     stop_id = stop_time_update.stop_id
-    if stop_id[:3] not in {"M11", "M12", "M13", "M14", "M16"}:
+    if stop_id[:3] not in {"M11", "M12", "M13", "M14", "M16", "M18"}:
         return True
     flipper = {"N": "S", "S": "N"}
     stop_time_update.stop_id = stop_id[:3] + flipper[stop_id[3]]
@@ -124,7 +124,7 @@ trip_data_cleaner = tripupdater.TripDataCleaner(
         delete_old_scheduled_trips,
         fix_current_stop_sequence
     ],
-    [invert_j_train_direction_in_bushwick],
+    [invert_m_train_direction_in_bushwick],
 )
 
 

@@ -202,7 +202,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "J"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_j_train_direction_in_bushwick(
+        gtfsupdater.invert_m_train_direction_in_bushwick(
             self.feed_update, stop_time_update
         )
 
@@ -216,7 +216,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "J"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_j_train_direction_in_bushwick(
+        gtfsupdater.invert_m_train_direction_in_bushwick(
             self.feed_update, stop_time_update
         )
 
@@ -230,7 +230,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "J"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_j_train_direction_in_bushwick(
+        gtfsupdater.invert_m_train_direction_in_bushwick(
             self.feed_update, stop_time_update
         )
 
@@ -244,7 +244,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "A"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_j_train_direction_in_bushwick(
+        gtfsupdater.invert_m_train_direction_in_bushwick(
             self.feed_update, stop_time_update
         )
 
