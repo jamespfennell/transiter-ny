@@ -4,11 +4,13 @@
 """
 Module that provides the parser for the NYC Subway's GTFS Realtime feeds.
 """
-from transiter.services.update import tripupdater, gtfsrealtimeutil
+import datetime
+
+from transiter.services.update import gtfsrealtimeparser
 
 # NOTE: even though not used, the NYCT protobuf file must be imported.
 # It works by modifiying the original gtfs_realtime_pb2 file.
-from transiter_nycsubway.gtfs import gtfs_realtime_pb2, nyct_subway_pb2
+from transiter_nycsubway.gtfs import gtfs_realtime_pb2
 
 
 def merge_in_nyc_subway_extension_data(data):
@@ -62,7 +64,7 @@ def merge_in_nyc_subway_extension_data(data):
 
 
 # TODO: probably this is not needed
-def duplicate_stops_problem(__, trip):
+def duplicate_stops_problem(trip):
 
     stop_ids = set()
     for stop_time in trip.stop_times:
@@ -72,7 +74,7 @@ def duplicate_stops_problem(__, trip):
     return True
 
 
-def fix_route_ids(__, trip):
+def fix_route_ids(trip):
     if trip.route_id == "5X":
         trip.route_id = "5"
     if trip.route_id == "" or trip.route_id == "SS":
@@ -80,16 +82,15 @@ def fix_route_ids(__, trip):
     return True
 
 
-def delete_old_scheduled_trips(feed_update, trip):
-    reference_time = feed_update.feed_time
+def delete_old_scheduled_trips(trip):
     if trip.current_status != "SCHEDULED":
         return True
-    if (reference_time - trip.start_time).total_seconds() > 300:
+    if (datetime.datetime.now() - trip.start_time).total_seconds() > 300:
         return False
     return True
 
 
-def fix_current_stop_sequence(__, trip):
+def fix_current_stop_sequence(trip):
     current_stop_id = trip.current_stop_id
     if current_stop_id is None or len(current_stop_id) > 3:
         return True
@@ -107,7 +108,7 @@ def fix_current_stop_sequence(__, trip):
     return True
 
 
-def invert_m_train_direction_in_bushwick(__, stop_time_update):
+def invert_m_train_direction_in_bushwick(stop_time_update):
     route_id = stop_time_update.trip.route_id
     if route_id != "M":
         return True
@@ -119,36 +120,20 @@ def invert_m_train_direction_in_bushwick(__, stop_time_update):
     return True
 
 
-trip_data_cleaner = tripupdater.TripDataCleaner(
+base_parser = gtfsrealtimeparser.create_parser(
+    gtfs_realtime_pb2, merge_in_nyc_subway_extension_data
+)
+
+trip_data_cleaner = gtfsrealtimeparser.TripDataCleaner(
     [
         fix_route_ids,
         duplicate_stops_problem,
         delete_old_scheduled_trips,
-        fix_current_stop_sequence
+        fix_current_stop_sequence,
     ],
     [invert_m_train_direction_in_bushwick],
 )
 
 
-def route_ids_function(feed, route_ids):
-    # TODO: this will eventually not be needed when Transiter source feature is made
-    feed_id_to_routes = {
-        '123456': ['1', '2', '3', '4', '5', '5X', '6', '6X', 'GS'],
-        'JZ': ['J', 'Z'],
-        'BDFM': ['B', 'D', 'F', 'M'],
-        'ACE': ['A', 'C', 'E', 'H', 'FS'],
-        'NQRW': ['N', 'Q', 'R', 'W'],
-        'L': ['L'],
-        'G': ['G'],
-        'SIR': ['SI'],
-        '7': ['7', '7X']
-    }
-    return feed_id_to_routes.get(feed.id, route_ids)
-
-
-update = gtfsrealtimeutil.create_parser(
-    gtfs_realtime_pb2,
-    merge_in_nyc_subway_extension_data,
-    trip_data_cleaner,
-    route_ids_function,
-)
+def update(binary_content, *args, **kwargs):
+    return trip_data_cleaner.clean(base_parser(binary_content, *args, **kwargs))
