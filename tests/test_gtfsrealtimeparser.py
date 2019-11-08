@@ -4,7 +4,7 @@ from unittest import mock
 
 from transiter import models
 
-from transiter_nycsubway import gtfsupdater
+from transiter_nycsubway import gtfsrealtimeparser
 
 
 class TestMergeInExtensionData(unittest.TestCase):
@@ -64,7 +64,7 @@ class TestMergeInExtensionData(unittest.TestCase):
             ],
         }
 
-        actual_output_data = gtfsupdater.merge_in_nyc_subway_extension_data(input_data)
+        actual_output_data = gtfsrealtimeparser.merge_in_nyc_subway_extension_data(input_data)
 
         self.maxDiff = None
         self.assertDictEqual(expected_output_data, actual_output_data)
@@ -113,7 +113,7 @@ class TestMergeInExtensionData(unittest.TestCase):
             ],
         }
 
-        actual_output_data = gtfsupdater.merge_in_nyc_subway_extension_data(input_data)
+        actual_output_data = gtfsrealtimeparser.merge_in_nyc_subway_extension_data(input_data)
 
         self.maxDiff = None
         self.assertDictEqual(expected_output_data, actual_output_data)
@@ -130,7 +130,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip = models.Trip()
         trip.route_id = "5X"
 
-        response = gtfsupdater.fix_route_ids(trip)
+        response = gtfsrealtimeparser.fix_route_ids(trip)
 
         self.assertTrue(response)
         self.assertEqual("5", trip.route_id)
@@ -140,7 +140,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip = models.Trip()
         trip.route_id = ""
 
-        response = gtfsupdater.fix_route_ids(trip)
+        response = gtfsrealtimeparser.fix_route_ids(trip)
 
         self.assertFalse(response)
 
@@ -149,7 +149,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip = models.Trip()
         trip.route_id = "SS"
 
-        response = gtfsupdater.fix_route_ids(trip)
+        response = gtfsrealtimeparser.fix_route_ids(trip)
 
         self.assertFalse(response)
 
@@ -158,7 +158,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip = models.Trip()
         trip.route_id = "A"
 
-        response = gtfsupdater.fix_route_ids(trip)
+        response = gtfsrealtimeparser.fix_route_ids(trip)
 
         self.assertTrue(response)
 
@@ -168,7 +168,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.start_time = datetime.datetime.fromtimestamp(100)
         trip.current_status = "SCHEDULED"
 
-        response = gtfsupdater.delete_old_scheduled_trips(trip)
+        response = gtfsrealtimeparser.delete_old_scheduled_trips(trip)
 
         self.assertFalse(response)
 
@@ -178,11 +178,11 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.start_time = datetime.datetime.fromtimestamp(100)
         trip.current_status = "RUNNING"
 
-        response = gtfsupdater.delete_old_scheduled_trips(trip)
+        response = gtfsrealtimeparser.delete_old_scheduled_trips(trip)
 
         self.assertTrue(response)
 
-    @mock.patch.object(gtfsupdater, "datetime")
+    @mock.patch.object(gtfsrealtimeparser, "datetime")
     def test_delete_old_scheduled_trips_not_old(self, datetime_module):
         """[NYC Subway cleaner] Don't delete scheduled trips that aren't old"""
         trip = models.Trip()
@@ -193,7 +193,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
             1000
         )
 
-        response = gtfsupdater.delete_old_scheduled_trips(trip)
+        response = gtfsrealtimeparser.delete_old_scheduled_trips(trip)
 
         self.assertTrue(response)
 
@@ -205,7 +205,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "M"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_m_train_direction_in_bushwick(stop_time_update)
+        gtfsrealtimeparser.invert_m_train_direction_in_bushwick(stop_time_update)
 
         self.assertEqual("M12S", stop_time_update.stop_id)
 
@@ -217,7 +217,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "M"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_m_train_direction_in_bushwick(stop_time_update)
+        gtfsrealtimeparser.invert_m_train_direction_in_bushwick(stop_time_update)
 
         self.assertEqual("M12N", stop_time_update.stop_id)
 
@@ -229,7 +229,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "M"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_m_train_direction_in_bushwick(stop_time_update)
+        gtfsrealtimeparser.invert_m_train_direction_in_bushwick(stop_time_update)
 
         self.assertEqual("M20N", stop_time_update.stop_id)
 
@@ -241,7 +241,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
         trip.route_id = "J"
         trip.stop_times.append(stop_time_update)
 
-        gtfsupdater.invert_m_train_direction_in_bushwick(stop_time_update)
+        gtfsrealtimeparser.invert_m_train_direction_in_bushwick(stop_time_update)
 
         self.assertEqual("M12N", stop_time_update.stop_id)
 

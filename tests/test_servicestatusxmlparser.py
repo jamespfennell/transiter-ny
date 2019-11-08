@@ -3,7 +3,7 @@ import unittest
 
 from transiter import models
 
-from transiter_nycsubway import servicestatusxmlupdater
+from transiter_nycsubway import servicestatusxmlparser
 
 
 class TestServiceStatusXmlParser(unittest.TestCase):
@@ -85,7 +85,7 @@ class TestServiceStatusXmlParser(unittest.TestCase):
 
     def test_parse(self):
         """[NYC Subway XML updater] XML parser"""
-        parser = servicestatusxmlupdater.ServiceStatusXmlParser(self.XML)
+        parser = servicestatusxmlparser.ServiceStatusXmlParser(self.XML)
         actual_data = parser.parse()
 
         expected_alert = models.Alert()

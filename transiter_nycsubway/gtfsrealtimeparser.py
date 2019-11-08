@@ -9,8 +9,9 @@ import datetime
 from transiter.services.update import gtfsrealtimeparser
 
 # NOTE: even though not used, the NYCT protobuf file must be imported.
-# It works by modifiying the original gtfs_realtime_pb2 file.
-from transiter_nycsubway.gtfs import gtfs_realtime_pb2
+# It works by modifying the original gtfs_realtime_pb2 file.
+# noinspection PyUnresolvedReferences
+from transiter_nycsubway.gtfs import gtfs_realtime_pb2, nyct_subway_pb2
 
 
 def merge_in_nyc_subway_extension_data(data):
@@ -135,5 +136,5 @@ trip_data_cleaner = gtfsrealtimeparser.TripDataCleaner(
 )
 
 
-def update(binary_content, *args, **kwargs):
+def parse(binary_content, *args, **kwargs):
     return trip_data_cleaner.clean(base_parser(binary_content, *args, **kwargs))

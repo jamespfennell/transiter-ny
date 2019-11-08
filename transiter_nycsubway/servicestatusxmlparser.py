@@ -13,7 +13,7 @@ from transiter import models
 
 # Additional arguments are accepted for forwards compatibility
 # noinspection PyUnusedLocal
-def update(binary_content, *args, **kwargs):
+def parse(binary_content, *args, **kwargs):
     return ServiceStatusXmlParser(binary_content).parse()
 
 
