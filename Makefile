@@ -1,5 +1,5 @@
 tests:
-	nosetests --with-coverage --cover-package=transiter_nycsubway --rednose -v tests
+	pytest  --cov=transiter_nycsubway
 
 package:
 	rm dist/*

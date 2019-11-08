@@ -9,14 +9,12 @@ from xml.etree import ElementTree
 
 import dateutil.parser
 from transiter import models
-from transiter.services.update import alertupdater
 
 
-def update(feed_update, content):
-    parser = ServiceStatusXmlParser(content)
-    alerts = parser.parse()
-    alertupdater.sync_alerts(feed_update.feed.system, alerts)
-    return True
+# Additional arguments are accepted for forwards compatibility
+# noinspection PyUnusedLocal
+def parse(binary_content, *args, **kwargs):
+    return ServiceStatusXmlParser(binary_content).parse()
 
 
 class ServiceStatusXmlParser:

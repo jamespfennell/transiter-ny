@@ -23,7 +23,7 @@ feeds:
     http:
       url: 'http://web.mta.info/status/ServiceStatusSubway.xml'
     parser:
-      custom: 'transiter_nycsubway.servicestatusxmlupdater:update'
+      custom: 'transiter_nycsubway.servicestatusxmlparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -33,7 +33,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -43,7 +43,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -53,7 +53,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -63,7 +63,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -73,7 +73,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -83,7 +83,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -93,7 +93,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -103,7 +103,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 
@@ -113,7 +113,7 @@ feeds:
       headers:
         X-API-KEY: "{mta_api_key}"
     parser:
-      custom: 'transiter_nycsubway.gtfsupdater:update'
+      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
 

@@ -1,5 +1,5 @@
-coverage
-nose
-rednose
-coveralls
-twine
+black==19.10b0
+coverage==4.5.4
+pytest==5.2.2
+pytest-cov==2.8.1
+twine==2.0.0

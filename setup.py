@@ -14,7 +14,7 @@ The package needs to be used with configuration files provided in
 
 setup(
     name="transiter_nycsubway",
-    version="0.1.0",
+    version="0.2.0",
     author="James Fennell",
     author_email="jamespfennell@gmail.com",
     description="NYC Subway integration for Transiter",
@@ -23,6 +23,6 @@ setup(
     url="https://github.com/jamespfennell/transiter-nycsubway",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["python-dateutil", "transiter"],
+    install_requires=["python-dateutil>=2.8.1", "transiter>=0.2.2"],
     license="MIT",
 )
