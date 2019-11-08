@@ -14,7 +14,7 @@ The package needs to be used with configuration files provided in
 
 setup(
     name="transiter_nycsubway",
-    version="0.1.0",
+    version="0.2.0",
     author="James Fennell",
     author_email="jamespfennell@gmail.com",
     description="NYC Subway integration for Transiter",
