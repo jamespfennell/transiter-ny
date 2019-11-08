@@ -15,26 +15,19 @@ install the Python package contained in this repository:
 
     pip install transiter-nycsubway
 
-Next, download all of the files in the config directory of this repository
-to the computer from which you will be installing the transit system.
-It may be easiest to just clone the repo. 
-
-Navigate to the directory containing the config files.
-The following curl
-command makes the necessary HTTP request to install the system with ID `nycsubway`:
+Then, execute the following curl
+command. This makes the necessary HTTP request to install the system with ID `nycsubway`:
 
     curl -X PUT $TRANSITER_SERVER/systems/nycsubway \
         -F 'mta_api_key=$YOUR_MTA_API_KEY' \
-        -F 'config_file=@nyc_subway_transiter_config.toml' \
-        -F 'direction_name_rules_basic=@nyc_subway_direction_name_rules_basic.csv' \
-        -F 'direction_name_rules_with_track=@nyc_subway_direction_name_rules_with_track.csv'
+        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/config/nyc_subway_transiter_config.yaml'
         
-The install will take up to two minutes - most of this time is spent
-inserting the half a million timetable entries into your database.
+The install will take up to 75 seconds - most of this time is spent
+inserting the half a million timetable entries into the database.
 
-The configuration contains some sane defaults:
+The system's YAML configuration contains some sane defaults:
 
-- The feeds are updated every 5 seconds.
+- The 10 realtime feeds are updated every 5 seconds.
 
 - Four service maps are constructed using the subway's timetable: (1) daytime,
   (2) night-time, (3) weekend and (4) all times.
@@ -47,7 +40,7 @@ The configuration contains some sane defaults:
 - For stops, the daytime and realtime service maps are shown.
   For routes, the all times and realtime service maps are shown.
   
-Of course everything can be changed by playing with the TOML file.
+Of course everything can be changed by playing with the YAML config file.
 
 
 ## License note
@@ -71,7 +64,7 @@ is released under the MIT license.
 
 The NYC Subway configuration here uses Transiter's built-in GTFS static parser,
 provides a custom extension of Transiter's built-in GTFS realtime parser, 
-and provides a custom extension to read the `ServiceStatusSubway.xml` feed. 
+and provides a custom parser to read the `ServiceStatusSubway.xml` feed. 
 
 Having custom parsers for the NYC Subway, rather than relying purely on 
 Transiter's built-in parsers, is necessary for a few reasons:
@@ -87,8 +80,8 @@ Transiter's built-in parsers, is necessary for a few reasons:
 
 - The alerts for the subway are not in the GTFS Realtime feeds; they're in an XML
     feed. Apparently it's some kind of standard 'SIRI' XML format,
-    but because it's XML based there's no chance on earth I'll ever
-    natively support it in Transiter.
+    but because it's XML based there's no chance on earth it will ever be
+    natively supported in Transiter.
      A custom parser for this XML feed is needed and contained here.
 
 ### Why do you vendorize the GTFS realtime proto-buffer module?
