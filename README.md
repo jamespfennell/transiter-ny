@@ -20,7 +20,7 @@ command. This makes the necessary HTTP request to install the system with ID `ny
 
     curl -X PUT $TRANSITER_SERVER/systems/nycsubway \
         -F 'mta_api_key=$YOUR_MTA_API_KEY' \
-        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/config/nyc_subway_transiter_config.yaml'
+        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/nyc_subway_transiter_config.yaml'
         
 The install will take up to 75 seconds - most of this time is spent
 inserting the half a million timetable entries into the database.
