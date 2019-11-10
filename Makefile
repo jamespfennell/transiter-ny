@@ -2,7 +2,7 @@ tests:
 	pytest  --cov=transiter_nycsubway
 
 package:
-	rm dist/*
+	rm -r dist
 	python setup.py sdist bdist_wheel
 
 distribute:
