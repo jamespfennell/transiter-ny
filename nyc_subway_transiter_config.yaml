@@ -19,6 +19,15 @@ feeds:
     auto_update:
       enabled: false
 
+  DirectionRules:
+    http:
+      url: 'http://web.mta.info/developers/data/nyct/subway/Stations.csv'
+    parser:
+      custom: 'transiter_nycsubway.stationscsvparser:parse'
+    required_for_install: true
+    auto_update:
+      enabled: false
+
   ServiceStatus:
     http:
       url: 'http://web.mta.info/status/ServiceStatusSubway.xml'
@@ -154,12 +163,3 @@ service_maps:
     source: REALTIME
     use_for_stops_in_route: true
     use_for_routes_at_stop: true
-
-
-direction_rules_files:
-  - http:
-      url: https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/config/nyc_subway_direction_name_rules_with_track.csv
-  - http:
-      url: https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/config/nyc_subway_direction_name_rules_basic.csv
-
-
