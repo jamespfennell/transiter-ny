@@ -36,6 +36,16 @@ feeds:
     auto_update:
       period: 5 seconds
 
+  Alerts:
+    http:
+      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts'
+      headers:
+        X-API-KEY: "{mta_api_key}"
+    parser:
+      built_in: GTFS_REALTIME
+    auto_update:
+      period: 5 seconds
+
   7:
     http:
       url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-7'
