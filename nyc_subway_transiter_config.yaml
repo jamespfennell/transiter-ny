@@ -36,95 +36,29 @@ feeds:
     auto_update:
       period: 5 seconds
 
-  7:
+{%
+for id_, mta_url_postfix in (
+    ("7", "-7"),
+    ("123456", ""),
+    ("ACE", "-ace"),
+    ("BDFM", "-bdfm"),
+    ("G", "-g"),
+    ("JZ", "-jz"),
+    ("L", "-l"),
+    ("NQRW", "-nqrw"),
+    ("SIR", "-si")
+)
+%}
+  {{ id_ }}:
     http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-7'
+      url: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs{{ mta_url_postfix }}"
       headers:
-        X-API-KEY: "{mta_api_key}"
+        X-API-KEY: "{{ mta_api_key }}"
     parser:
       custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
       period: 5 seconds
-
-  123456:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  ACE:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  BDFM:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-bdfm'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  G:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-g'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  JZ:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-jz'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  L:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-l'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  NQRW:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-nqrw'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
-
-  SIR:
-    http:
-      url: 'https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-si'
-      headers:
-        X-API-KEY: "{mta_api_key}"
-    parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
-    auto_update:
-      period: 5 seconds
+{% endfor %}
 
 
 service_maps:
@@ -136,27 +70,27 @@ service_maps:
 
   weekday_day:
     source: SCHEDULE
-    #conditions:
-    #  weekday: true
-    #  starts_later_than: 7
-    #  ends_earlier_than: 19
+    conditions:
+      weekday: true
+      starts_later_than: 7
+      ends_earlier_than: 19
     threshold: 0.1
     use_for_routes_at_stop: true
 
   weekday_night:
     source: SCHEDULE
-    #conditions:
-    #  weekday: true
-    #  starts_later_than: 0
-    #  ends_earlier_than: 6
+    conditions:
+      weekday: true
+      starts_later_than: 0
+      ends_earlier_than: 6
     threshold: 0.1
 
   weekend:
     source: SCHEDULE
-    # conditions:
-    #  weekend: true
-    #  starts_later_than: 7
-    #  ends_earlier_than: 19
+    conditions:
+      weekend: true
+      starts_later_than: 7
+      ends_earlier_than: 19
     threshold: 0.1
 
   realtime:
