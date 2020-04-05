@@ -122,7 +122,8 @@ class TestMergeInExtensionData(unittest.TestCase):
 class TestNycSubwayGtfsCleaner(unittest.TestCase):
     def setUp(self):
         self.feed_update = models.FeedUpdate(
-            models.Feed(), feed_time=datetime.datetime.fromtimestamp(1000)
+            feed=models.Feed(),
+            content_created_at=datetime.datetime.fromtimestamp(1000)
         )
 
     def test_fix_route_ids_5x(self):
