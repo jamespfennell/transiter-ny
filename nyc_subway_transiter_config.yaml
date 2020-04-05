@@ -34,7 +34,7 @@ feeds:
     parser:
       custom: 'transiter_nycsubway.servicestatusxmlparser:parse'
     auto_update:
-      period: 5 seconds
+      period: {{ update_periodicity or '5' }} seconds
 
 {%
 for id_, mta_url_postfix in (
@@ -57,7 +57,7 @@ for id_, mta_url_postfix in (
     parser:
       custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
     auto_update:
-      period: 5 seconds
+      period: {{ update_periodicity or '5' }} seconds
 {% endfor %}
 
 
