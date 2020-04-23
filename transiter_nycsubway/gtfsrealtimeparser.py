@@ -132,7 +132,9 @@ trip_data_cleaner = gtfsrealtimeparser.TripDataCleaner(
         delete_old_scheduled_trips,
         fix_current_stop_sequence,
     ],
-    [invert_m_train_direction_in_bushwick],
+    # TODO: re-enable
+    #[invert_m_train_direction_in_bushwick],
+    []
 )
 
 
