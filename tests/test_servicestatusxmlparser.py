@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from transiter import models
+from transiter import parse as transiter_parse
 
 from transiter_nycsubway import servicestatusxmlparser
 
@@ -88,15 +88,17 @@ class TestServiceStatusXmlParser(unittest.TestCase):
         parser = servicestatusxmlparser.ServiceStatusXmlParser(self.XML)
         actual_data = parser.parse()
 
-        expected_alert = models.Alert()
-        expected_alert.id = self.STATUS_ID
-        expected_alert.type = self.MESSAGE_TITLE
-        expected_alert.priority = self.STATUS_PRIORITY
-        expected_alert.cause = models.Alert.Cause.ACCIDENT
-        expected_alert.effect = models.Alert.Effect.MODIFIED_SERVICE
-        expected_alert.description = self.MESSAGE_CONTENT
-        expected_alert.header = self.MESSAGE_TITLE
-        expected_alert.start_time = self.START_TIME
-        expected_alert.creation_time = self.CREATION_TIME
+        expected_alert = transiter_parse.Alert(
+            id=self.STATUS_ID,
+            # type = self.MpESSAGE_TITLE,
+            priority=self.STATUS_PRIORITY,
+            cause=transiter_parse.Alert.Cause.ACCIDENT,
+            effect=transiter_parse.Alert.Effect.MODIFIED_SERVICE,
+            description=self.MESSAGE_CONTENT,
+            header=self.MESSAGE_TITLE,
+            start_time=self.START_TIME,
+            route_ids={self.ROUTE_ONE, self.ROUTE_TWO}
+            # creation_time = self.CREATION_TIME,
+        )
 
-        self.assertListEqual([expected_alert], actual_data)
+        assert [expected_alert] == actual_data

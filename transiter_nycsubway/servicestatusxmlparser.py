@@ -8,7 +8,7 @@ import re
 from xml.etree import ElementTree
 
 import dateutil.parser
-from transiter import models
+from transiter import parse as transiter_parse
 
 
 # Additional arguments are accepted for forwards compatibility
@@ -28,7 +28,7 @@ class ServiceStatusXmlParser:
         root = ElementTree.fromstring(self._raw_xml)
         situations = self._find_descendent_element(root, "Situations")
         for situation in situations:
-            alert = models.Alert()
+            alert = transiter_parse.Alert(id=None, description=None, header=None)
             model_attr_to_xml_tag = {
                 "id": "SituationNumber",
                 "header": "ReasonName",

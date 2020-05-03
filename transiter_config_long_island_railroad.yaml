@@ -1,0 +1,32 @@
+name: Long Island Railroad
+
+feeds:
+
+  gtfsstatic:
+    http:
+      url: "http://web.mta.info/developers/data/lirr/google_transit.zip"
+    parser:
+      built_in: GTFS_STATIC
+    required_for_install: true
+    auto_update:
+      enabled: false
+
+  gtfsrealtime-trips:
+    http:
+      url: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"
+      headers:
+        X-API-KEY: "{{ mta_api_key }}"
+    parser:
+      built_in: GTFS_REALTIME
+    auto_update:
+      period: {{ update_periodicity or '5' }} seconds
+
+  gtfsrealtime-alerts:
+    http:
+      url: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Flirr-alerts"
+      headers:
+        X-API-KEY: "{{ mta_api_key }}"
+    parser:
+      built_in: GTFS_REALTIME
+    auto_update:
+      period: {{ update_periodicity or '5' }} seconds

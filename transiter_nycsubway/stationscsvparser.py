@@ -4,7 +4,7 @@ generate the two direction name CSVs for the NYC subway.
 """
 import csv
 
-from transiter import models
+from transiter import parse as transiter_parse
 
 # Some stops in the system can be broken up into two directions by using
 # the track field that is provided in the MTA's GTFS Realtime feed. The following
@@ -41,7 +41,7 @@ def parse(binary_content, *args, **kwargs):
     csv_reader = csv.DictReader(SPECIAL_STOPS_CSV.strip().splitlines())
     for row in csv_reader:
         special_stop_id_to_basic_name[row["stop_id"]] = row["basic_name"]
-        yield models.DirectionRule(
+        yield transiter_parse.DirectionRule(
             id=str(priority),
             priority=priority,
             stop_id=row["stop_id"],
@@ -58,7 +58,7 @@ def parse(binary_content, *args, **kwargs):
         }
         for stop_id, name in stop_id_to_name.items():
             name = special_stop_id_to_basic_name.get(stop_id, name)
-            yield models.DirectionRule(
+            yield transiter_parse.DirectionRule(
                 id=str(priority),
                 priority=priority,
                 stop_id=stop_id,

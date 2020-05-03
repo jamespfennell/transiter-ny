@@ -64,7 +64,9 @@ class TestMergeInExtensionData(unittest.TestCase):
             ],
         }
 
-        actual_output_data = gtfsrealtimeparser.merge_in_nyc_subway_extension_data(input_data)
+        actual_output_data = gtfsrealtimeparser.merge_in_nyc_subway_extension_data(
+            input_data
+        )
 
         self.maxDiff = None
         self.assertDictEqual(expected_output_data, actual_output_data)
@@ -113,7 +115,9 @@ class TestMergeInExtensionData(unittest.TestCase):
             ],
         }
 
-        actual_output_data = gtfsrealtimeparser.merge_in_nyc_subway_extension_data(input_data)
+        actual_output_data = gtfsrealtimeparser.merge_in_nyc_subway_extension_data(
+            input_data
+        )
 
         self.maxDiff = None
         self.assertDictEqual(expected_output_data, actual_output_data)
@@ -122,8 +126,7 @@ class TestMergeInExtensionData(unittest.TestCase):
 class TestNycSubwayGtfsCleaner(unittest.TestCase):
     def setUp(self):
         self.feed_update = models.FeedUpdate(
-            feed=models.Feed(),
-            content_created_at=datetime.datetime.fromtimestamp(1000)
+            feed=models.Feed(), content_created_at=datetime.datetime.fromtimestamp(1000)
         )
 
     def test_fix_route_ids_5x(self):
