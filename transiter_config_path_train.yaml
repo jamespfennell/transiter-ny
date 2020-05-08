@@ -1,0 +1,12 @@
+name: Long Island Railroad
+
+feeds:
+
+  gtfsstatic:
+    http:
+      url: "http://data.trilliumtransit.com/gtfs/path-nj-us/path-nj-us.zip"
+    parser:
+      built_in: GTFS_STATIC
+    required_for_install: true
+    auto_update:
+      enabled: false
