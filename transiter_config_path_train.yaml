@@ -1,4 +1,4 @@
-name: Long Island Railroad
+name: PATH Train
 
 feeds:
 
@@ -10,3 +10,11 @@ feeds:
     required_for_install: true
     auto_update:
       enabled: false
+
+  gtfsrealtime-trips:
+    http:
+      url: "https://path.transitdata.nyc/gtfsrt"
+    parser:
+      built_in: GTFS_REALTIME
+    auto_update:
+      period: {{ update_periodicity or '5' }} seconds
