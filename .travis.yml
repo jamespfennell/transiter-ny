@@ -9,7 +9,7 @@ install:
   - git checkout FullAlertsSupport
   - cd ..
   - pip install ./transiter
-  - pip install ./transiter_ny_mta
+  - pip install -e ./transiter_ny_mta
   - pip install -r transiter_ny_mta/dev-requirements.txt
 
 script:
