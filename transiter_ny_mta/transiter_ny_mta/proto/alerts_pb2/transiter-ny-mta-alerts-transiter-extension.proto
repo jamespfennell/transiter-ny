@@ -4,7 +4,6 @@
 //
 syntax = "proto2";
 
-option java_package = "com.google.transit.realtime.me";
 import "transiter-ny-mta-alerts-gtfs-rt-base.proto";
 
 package transiter_ny_mta_alerts;

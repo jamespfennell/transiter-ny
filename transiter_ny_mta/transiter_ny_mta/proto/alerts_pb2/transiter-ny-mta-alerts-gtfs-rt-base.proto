@@ -23,7 +23,7 @@
 // https://github.com/google/transit/tree/master/gtfs-realtime
 
 syntax = "proto2";
-option java_package = "com.google.transit.realtime.me";
+option java_package = "com.github.transiter-ny-mta.alerts";
 package transiter_ny_mta_alerts;
 
 // The contents of a feed message.

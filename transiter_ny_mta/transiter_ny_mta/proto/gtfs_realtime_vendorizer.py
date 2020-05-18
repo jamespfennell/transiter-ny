@@ -24,19 +24,43 @@ covering both cases seems to be necessary.
 import os
 import requests
 import subprocess
+import importlib
 import dataclasses
 
 GTFS_RT_PROTO_URL = (
-"https://raw.githubusercontent.com/google/transit"
-"/master/gtfs-realtime/proto/gtfs-realtime.proto"
+    "https://raw.githubusercontent.com/google/transit"
+    "/master/gtfs-realtime/proto/gtfs-realtime.proto"
 )
-TRANSITER_EXT_PROTO_URL = ""
+TRANSITER_EXT_PROTO_URL = (
+    "https://raw.githubusercontent.com/jamespfennell/transiter"
+    "/FullAlertsSupport/transiter/parse/proto/gtfs-realtime-transiter-extension.proto"
+)
 
 
 @dataclasses.dataclass
 class Config:
     key: str
     mta_ext_proto_url: str
+    extension_id: int
+
+    @property
+    def directory(self):
+        return self.key + "_pb2"
+
+    @property
+    def gtfs_rt_filename(self):
+        return f"transiter-ny-mta-{self.key}-gtfs-rt-base.proto"
+
+    @property
+    def mta_filename(self):
+        return f"transiter-ny-mta-{self.key}-mta-extension.proto"
+
+    @property
+    def transiter_filename(self):
+        return self._build_proto_path("transiter-extension")
+
+    def _build_proto_path(self, postfix):
+        return f"transiter-ny-mta-{self.key}-{postfix}.proto"
 
 
 alerts_config = Config(
@@ -45,65 +69,72 @@ alerts_config = Config(
         "https://raw.githubusercontent.com/OneBusAway/onebusaway-gtfs-realtime-api"
         "/master/src/main/resources/com/google/transit/realtime/"
         "gtfs-realtime-service-status.proto"
+    ),
+    extension_id=1001
+)
+
+
+def run(config: Config):
+    os.makedirs(config.directory, exist_ok=True)
+
+    for url, filename in [
+        (GTFS_RT_PROTO_URL, config.gtfs_rt_filename),
+        (TRANSITER_EXT_PROTO_URL, config.transiter_filename),
+        (config.mta_ext_proto_url, config.mta_filename),
+    ]:
+        print(f"[{config.key}] Generating {filename}")
+        raw_proto = requests.get(url).text
+        proto = _substitute_package_settings(raw_proto, config)
+        with open(os.path.join(config.directory, filename), "w") as f:
+            f.write(proto)
+
+    print(f"[{config.key}] Compiling protobufs")
+    subprocess.run(
+        [
+            "protoc",
+            "--python_out=.",
+            "--proto_path=.",
+            config.gtfs_rt_filename,
+            config.transiter_filename,
+            config.mta_filename,
+        ],
+        cwd=config.directory,
     )
-)
+
+    for filename in [
+        config.transiter_filename,
+        config.mta_filename,
+    ]:
+        filename = filename[:-len(".proto")].replace("-", "_") + "_pb2.py"
+        print(f"[{config.key}] Fixing Python imports in {filename}")
+        with open(os.path.join(config.directory, filename)) as f:
+            content = f.read()
+        content = content.replace("import transiter_ny_mta", "from . import transiter_ny_mta")
+        with open(os.path.join(config.directory, filename), "w") as f:
+            f.write(content)
+
+    print(f"[{config.key}] Attempting to import generated module...")
+    try:
+        importlib.import_module(".alerts_pb2", "transiter_ny_mta.proto")
+        print(f"[{config.key}] Success")
+    except Exception:
+        print(f"[{config.key}] Failed! Exiting with stack trace:")
+        raise
+
+def _substitute_package_settings(proto: str, config: Config):
+    output = []
+    for line in proto.splitlines():
+        if line.startswith("option java_package"):
+            output.append(
+                f'option java_package = "com.github.transiter-ny-mta.{config.key}";'
+            )
+        elif line.startswith("package"):
+            output.append(f"package transiter_ny_mta_{config.key};")
+        elif line.startswith("import"):
+            output.append(f'import "{config.gtfs_rt_filename}";')
+        else:
+            output.append(line.replace("transit_realtime.", ""))
+    return "\n".join(output)
 
 
-
-
-OUTPUT_DIR = "transiter_nycsubway/gtfs"
-GTFS_REALTIME_PROTO_URL = "https://raw.githubusercontent.com/google/transit/master/gtfs-realtime/proto/gtfs-realtime.proto"
-NYC_TRANSIT_PROTO_URL = (
-    "http://datamine.mta.info/sites/all/files/pdfs/nyct-subway.proto.txt"
-)
-
-
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-gtfs_realtime_proto_raw = requests.get(GTFS_REALTIME_PROTO_URL).text
-
-gtfs_realtime_proto = gtfs_realtime_proto_raw.replace(
-    'optional java_package = "com.google.transiter.realtime";',
-    'optional java_package = "com.transiter.nycsubway";',
-    1,
-).replace("package transit_realtime;", "package transiter_nycsubway;", 1)
-
-gtfs_realtime_proto_location = os.path.join(OUTPUT_DIR, "gtfs-realtime.proto")
-with open(gtfs_realtime_proto_location, "w") as f:
-    f.write(gtfs_realtime_proto)
-
-
-nyc_transit_proto_raw = requests.get(NYC_TRANSIT_PROTO_URL).text
-
-nyc_transit_proto = "\n".join(
-    [
-        'syntax = "proto2";',
-        "package transiter_nycsubway;",
-        nyc_transit_proto_raw.replace(
-            'optional java_package = "com.google.transiter.realtime";',
-            'optional java_package = "com.transiter.nycsubway";',
-            1,
-        )
-        .replace(
-            'import "gtfs-realtime.proto";',
-            'import "{}";'.format(gtfs_realtime_proto_location),
-            1,
-        )
-        .replace("transit_realtime", "transiter_nycsubway"),
-    ]
-)
-
-nyc_transit_proto_location = os.path.join(OUTPUT_DIR, "nyct-subway.proto")
-with open(nyc_transit_proto_location, "w") as f:
-    f.write(nyc_transit_proto)
-
-subprocess.run(["protoc", "--python_out", ".", gtfs_realtime_proto_location])
-subprocess.run(["protoc", "--python_out", ".", nyc_transit_proto_location])
-
-
-# Test that we can safely import both the standard reader and the vendorized reader
-from google.transit import gtfs_realtime_pb2
-from transiter_nycsubway.gtfs import gtfs_realtime_pb2 as gtfs_realtime_pb2_vendorized
-from transiter_nycsubway.gtfs import nyct_subway_pb2
-
-packages = [gtfs_realtime_pb2, gtfs_realtime_pb2_vendorized, nyct_subway_pb2]
+run(alerts_config)
