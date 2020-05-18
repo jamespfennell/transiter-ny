@@ -13,9 +13,8 @@ install:
   - pip install -r transiter_ny_mta/dev-requirements.txt
 
 script:
-  - pytest transiter_ny_mta/tests
+  - coverage run -p -m pytest transiter_ny_mta/tests
 
 after_success:
-  - pip install --quiet coverage==5.1
   - pip install --quiet coveralls
   - coveralls
