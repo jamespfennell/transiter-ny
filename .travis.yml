@@ -2,6 +2,10 @@ language: python
 python: "3.7"
 
 install:
+  # While the Transiter 0.5 work is in development we can't install it from PyPI.
+  # We just install it from Git instead for the moment.
+  - git clone https://github.com/jamespfennell/transiter.git
+  - pip install ./transiter
   - pip install ./transiter_ny_mta
   - pip install -r transiter_ny_mta/dev-requirements.txt
 
