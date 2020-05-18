@@ -28,15 +28,17 @@ feeds:
     auto_update:
       enabled: false
 
-  ServiceStatus:
+  gtfsrealtime-alerts:
     http:
-      url: 'http://web.mta.info/status/ServiceStatusSubway.xml'
+      url: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts"
+      headers:
+        X-API-KEY: "{{ mta_api_key }}"
     parser:
-      custom: 'transiter_nycsubway.servicestatusxmlparser:parse'
+      built_in: GTFS_REALTIME
     auto_update:
       period: {{ update_periodicity or '5' }} seconds
 
-{%
+  {%
 for id_, mta_url_postfix in (
     ("7", "-7"),
     ("123456", ""),

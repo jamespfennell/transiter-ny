@@ -24,6 +24,32 @@ covering both cases seems to be necessary.
 import os
 import requests
 import subprocess
+import dataclasses
+
+GTFS_RT_PROTO_URL = (
+"https://raw.githubusercontent.com/google/transit"
+"/master/gtfs-realtime/proto/gtfs-realtime.proto"
+)
+TRANSITER_EXT_PROTO_URL = ""
+
+
+@dataclasses.dataclass
+class Config:
+    key: str
+    mta_ext_proto_url: str
+
+
+alerts_config = Config(
+    key="alerts",
+    mta_ext_proto_url=(
+        "https://raw.githubusercontent.com/OneBusAway/onebusaway-gtfs-realtime-api"
+        "/master/src/main/resources/com/google/transit/realtime/"
+        "gtfs-realtime-service-status.proto"
+    )
+)
+
+
+
 
 OUTPUT_DIR = "transiter_nycsubway/gtfs"
 GTFS_REALTIME_PROTO_URL = "https://raw.githubusercontent.com/google/transit/master/gtfs-realtime/proto/gtfs-realtime.proto"

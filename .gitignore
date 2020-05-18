@@ -9,4 +9,4 @@ transiter/systems/nycsubway/config.yaml
 *.egg-info
 build
 dist
-.coverage
+transiter_ny_mta/.pyenv

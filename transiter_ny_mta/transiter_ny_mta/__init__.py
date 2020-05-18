@@ -1,0 +1,1 @@
+from .alertsparser import AlertsParser
