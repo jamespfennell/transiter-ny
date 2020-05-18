@@ -1,5 +1,5 @@
 """
-Vendorize the GTFS realtime protobuf reader and add the NYCT extension on top of it.
+Vendorize the GTFS realtime protobuf reader and add NYCT extensions on top of it.
 
 The reader is vendorized because the NYCT extension works by modifying the GTFS realtime
 reader. By default, it modifies the standard reader google.transiter.gtfs_realtime_pb2.
@@ -35,13 +35,21 @@ TRANSITER_EXT_PROTO_URL = (
     "https://raw.githubusercontent.com/jamespfennell/transiter"
     "/FullAlertsSupport/transiter/parse/proto/gtfs-realtime-transiter-extension.proto"
 )
+INIT_PY_TEMPLATE = """
+from .{} import *
+from . import {}
+from . import {}
+
+MTA_EXTENSION_ID = {}
+
+"""
 
 
 @dataclasses.dataclass
 class Config:
     key: str
     mta_ext_proto_url: str
-    extension_id: int
+    mta_extension_id: int
 
     @property
     def directory(self):
@@ -70,7 +78,7 @@ alerts_config = Config(
         "/master/src/main/resources/com/google/transit/realtime/"
         "gtfs-realtime-service-status.proto"
     ),
-    extension_id=1001
+    mta_extension_id=1001,
 )
 
 
@@ -105,13 +113,26 @@ def run(config: Config):
         config.transiter_filename,
         config.mta_filename,
     ]:
-        filename = filename[:-len(".proto")].replace("-", "_") + "_pb2.py"
+        filename = _proto_to_pb2(filename) + ".py"
         print(f"[{config.key}] Fixing Python imports in {filename}")
         with open(os.path.join(config.directory, filename)) as f:
             content = f.read()
-        content = content.replace("import transiter_ny_mta", "from . import transiter_ny_mta")
+        content = content.replace(
+            "import transiter_ny_mta", "from . import transiter_ny_mta"
+        )
         with open(os.path.join(config.directory, filename), "w") as f:
             f.write(content)
+
+    print(f"[{config.key}] Writing __init__.py")
+    with open(os.path.join(config.directory, "__init__.py"), "w") as f:
+        f.write(
+            INIT_PY_TEMPLATE.format(
+                _proto_to_pb2(config.gtfs_rt_filename),
+                _proto_to_pb2(config.transiter_filename),
+                _proto_to_pb2(config.mta_filename),
+                config.mta_extension_id,
+            )
+        )
 
     print(f"[{config.key}] Attempting to import generated module...")
     try:
@@ -120,6 +141,11 @@ def run(config: Config):
     except Exception:
         print(f"[{config.key}] Failed! Exiting with stack trace:")
         raise
+
+
+def _proto_to_pb2(filename):
+    return filename[: -len(".proto")].replace("-", "_") + "_pb2"
+
 
 def _substitute_package_settings(proto: str, config: Config):
     output = []
