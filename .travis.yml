@@ -2,8 +2,8 @@ language: python
 python: "3.7"
 
 install:
-  - pip install -e ./transiter_ny_mta
-  - pip install -r transiter_ny_mta/dev-requirements.txt
+  - pip install --quiet -e ./transiter_ny_mta
+  - pip install --quiet -r transiter_ny_mta/dev-requirements.txt
 
 script:
   - coverage run --source=transiter_ny_mta/transiter_ny_mta --omit="*pb2.py","*gtfs_rt_vendorizer.py" -m pytest transiter_ny_mta/tests
