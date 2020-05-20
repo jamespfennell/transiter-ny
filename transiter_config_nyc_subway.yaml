@@ -34,7 +34,7 @@ feeds:
       headers:
         X-API-KEY: "{{ mta_api_key }}"
     parser:
-      built_in: GTFS_REALTIME
+      built_in: "transiter_ny_mta:AlertsParser"
     auto_update:
       period: {{ update_periodicity or '5' }} seconds
 

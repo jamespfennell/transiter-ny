@@ -9,6 +9,6 @@ setup(
     url="https://github.com/jamespfennell/transiter-nycsubway",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["python-dateutil>=2.8.1", "transiter>=0.5.0"],
+    install_requires=["python-dateutil>=2.8.1", "transiter>=0.5.0.dev895"],
     license="MIT",
 )
