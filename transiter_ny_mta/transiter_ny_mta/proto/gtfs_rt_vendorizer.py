@@ -121,8 +121,6 @@ def run(config: Config):
         ],
         cwd=directory,
     )
-    print(f"[{config.key}] Running formatter")
-    subprocess.run(["black", "."], cwd=directory)
 
     for filename in [
         config.transiter_filename,
