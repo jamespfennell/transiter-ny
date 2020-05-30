@@ -33,7 +33,8 @@ GTFS_RT_PROTO_URL = (
 )
 TRANSITER_EXT_PROTO_URL = (
     "https://raw.githubusercontent.com/jamespfennell/transiter"
-    "/FullAlertsSupport/transiter/parse/proto/gtfs-realtime-transiter-extension.proto"
+    "/master/transiter/parse/transiter_gtfs_rt_pb2"
+    "/gtfs-realtime-transiter-extension.proto"
 )
 INIT_PY_TEMPLATE = """
 from .{} import *
@@ -80,10 +81,20 @@ alerts_config = Config(
     ),
     mta_extension_id=1001,
 )
+subway_trips_config = Config(
+    key="subwaytrips",
+    mta_ext_proto_url=(
+        "https://raw.githubusercontent.com/OneBusAway/onebusaway-gtfs-realtime-api"
+        "/master/src/main/resources/com/google/transit/realtime/"
+        "gtfs-realtime-NYCT.proto"
+    ),
+    mta_extension_id=1001,
+)
 
 
 def run(config: Config):
-    os.makedirs(config.directory, exist_ok=True)
+    directory = os.path.join(os.path.dirname(__file__), config.directory)
+    os.makedirs(directory, exist_ok=True)
 
     for url, filename in [
         (GTFS_RT_PROTO_URL, config.gtfs_rt_filename),
@@ -91,9 +102,11 @@ def run(config: Config):
         (config.mta_ext_proto_url, config.mta_filename),
     ]:
         print(f"[{config.key}] Generating {filename}")
-        raw_proto = requests.get(url).text
+        response = requests.get(url)
+        response.raise_for_status()
+        raw_proto = response.text
         proto = _substitute_package_settings(raw_proto, config)
-        with open(os.path.join(config.directory, filename), "w") as f:
+        with open(os.path.join(directory, filename), "w") as f:
             f.write(proto)
 
     print(f"[{config.key}] Compiling protobufs")
@@ -106,8 +119,10 @@ def run(config: Config):
             config.transiter_filename,
             config.mta_filename,
         ],
-        cwd=config.directory,
+        cwd=directory,
     )
+    print(f"[{config.key}] Running formatter")
+    subprocess.run(["black", "."], cwd=directory)
 
     for filename in [
         config.transiter_filename,
@@ -115,16 +130,16 @@ def run(config: Config):
     ]:
         filename = _proto_to_pb2(filename) + ".py"
         print(f"[{config.key}] Fixing Python imports in {filename}")
-        with open(os.path.join(config.directory, filename)) as f:
+        with open(os.path.join(directory, filename)) as f:
             content = f.read()
         content = content.replace(
             "import transiter_ny_mta", "from . import transiter_ny_mta"
         )
-        with open(os.path.join(config.directory, filename), "w") as f:
+        with open(os.path.join(directory, filename), "w") as f:
             f.write(content)
 
     print(f"[{config.key}] Writing __init__.py")
-    with open(os.path.join(config.directory, "__init__.py"), "w") as f:
+    with open(os.path.join(directory, "__init__.py"), "w") as f:
         f.write(
             INIT_PY_TEMPLATE.format(
                 _proto_to_pb2(config.gtfs_rt_filename),
@@ -164,3 +179,4 @@ def _substitute_package_settings(proto: str, config: Config):
 
 
 run(alerts_config)
+run(subway_trips_config)
