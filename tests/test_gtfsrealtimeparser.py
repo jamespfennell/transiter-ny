@@ -2,7 +2,7 @@ import datetime
 import unittest
 from unittest import mock
 
-from transiter import models
+from transiter.db import models
 
 from transiter_nycsubway import gtfsrealtimeparser
 
@@ -169,7 +169,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
     def test_delete_old_scheduled_trips_delete(self):
         """[NYC Subway cleaner] Delete old scheduled trips that haven't started"""
         trip = models.Trip()
-        trip.start_time = datetime.datetime.fromtimestamp(100)
+        trip.started_at = datetime.datetime.fromtimestamp(100)
         trip.current_status = "SCHEDULED"
 
         response = gtfsrealtimeparser.delete_old_scheduled_trips(trip)
@@ -179,7 +179,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
     def test_delete_old_scheduled_trips_started(self):
         """[NYC Subway cleaner] Don't delete scheduled trips that have started"""
         trip = models.Trip()
-        trip.start_time = datetime.datetime.fromtimestamp(100)
+        trip.started_at = datetime.datetime.fromtimestamp(100)
         trip.current_status = "RUNNING"
 
         response = gtfsrealtimeparser.delete_old_scheduled_trips(trip)
@@ -190,7 +190,7 @@ class TestNycSubwayGtfsCleaner(unittest.TestCase):
     def test_delete_old_scheduled_trips_not_old(self, datetime_module):
         """[NYC Subway cleaner] Don't delete scheduled trips that aren't old"""
         trip = models.Trip()
-        trip.start_time = datetime.datetime.fromtimestamp(1000)
+        trip.started_at = datetime.datetime.fromtimestamp(1000)
         trip.current_status = "SCHEDULED"
 
         datetime_module.datetime.now.return_value = datetime.datetime.fromtimestamp(

@@ -6,7 +6,7 @@ Module that provides the parser for the NYC Subway's GTFS Realtime feeds.
 """
 import datetime
 
-from transiter.services.update import gtfsrealtimeparser
+from transiter.import_ import gtfsrealtimeparser
 
 # NOTE: even though not used, the NYCT protobuf file must be imported.
 # It works by modifying the original gtfs_realtime_pb2 file.
