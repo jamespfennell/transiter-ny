@@ -79,7 +79,9 @@ def _move_data_between_extensions(feed_message):
             alert.effect = Alert.Effect.MODIFIED_SERVICE.value
             continue
         informed_entity = alert.informed_entity[0]
-        mta_ext_key = informed_entity._extensions_by_number[gtfs_rt_pb2.MTA_EXTENSION_ID]
+        mta_ext_key = informed_entity._extensions_by_number[
+            gtfs_rt_pb2.MTA_EXTENSION_ID
+        ]
         sort_order = informed_entity.Extensions[mta_ext_key].sort_order
         priority_val_string = sort_order[sort_order.rfind(":") + 1 :]
         priority = _convert_priority_val_string_to_priority(priority_val_string)
