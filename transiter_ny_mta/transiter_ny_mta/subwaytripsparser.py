@@ -1,18 +1,24 @@
 import enum
 import sys
 
-from transiter.parse import GtfsRealtimeParser
+from transiter import parse
 from transiter.parse.gtfsrealtime import TRANSITER_EXTENSION_ID
 from transiter_ny_mta.proto import subwaytrips_pb2 as gtfs_rt_pb2
+import typing
 
 
-class SubwayTripsParser(GtfsRealtimeParser):
+class SubwayTripsParser(parse.GtfsRealtimeParser):
 
     GTFS_REALTIME_PB2_MODULE = gtfs_rt_pb2
 
     @staticmethod
     def post_process_feed_message(feed_message):
         _move_data_between_extensions(feed_message)
+
+    def get_trips(self) -> typing.Iterable[parse.Trip]:
+        for trip in super().get_trips():
+            _invert_m_train_direction_in_bushwick(trip)
+            yield trip
 
 
 class _MtaDirection(enum.Enum):
@@ -70,10 +76,31 @@ def _move_data_between_extensions(feed_message):
             else:
                 track = None
 
+            if track is None:
+                continue
             transiter_ext = stop_time.Extensions[
                 stop_time._extensions_by_number[TRANSITER_EXTENSION_ID]
             ]
             transiter_ext.track = track
+
+
+def _invert_m_train_direction_in_bushwick(trip: parse.Trip):
+    route_id = trip.route_id
+    if route_id != "M":
+        return True
+    flipper = {"N": "S", "S": "N"}
+    for stop_time in trip.stop_times:
+        stop_id = stop_time.stop_id
+        if stop_id[:3] not in {"M11", "M12", "M13", "M14", "M16", "M18"}:
+            continue
+        stop_time.stop_id = stop_id[:3] + flipper[stop_id[3]]
+
+
+# TODO: fix next stop in vehicle position
+# TODO: all of the trip cleaners
+# - def fix_route_ids(trip):
+# - def invert_m_train_direction_in_bushwick
+# - delete old scheduled trips?
 
 
 def _create_vehicle_id_from_trip_desc(mta_ext, trip_id):
