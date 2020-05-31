@@ -23,7 +23,7 @@ feeds:
     http:
       url: 'http://web.mta.info/developers/data/nyct/subway/Stations.csv'
     parser:
-      custom: 'transiter_nycsubway.stationscsvparser:parse'
+      custom: 'transiter_ny_mta:StationsCsvParser'
     required_for_install: true
     auto_update:
       enabled: false
@@ -34,7 +34,7 @@ feeds:
       headers:
         X-API-KEY: "{{ mta_api_key }}"
     parser:
-      built_in: "transiter_ny_mta:AlertsParser"
+      custom: "transiter_ny_mta:AlertsParser"
     auto_update:
       period: {{ update_periodicity or '5' }} seconds
 
@@ -57,7 +57,7 @@ for id_, mta_url_postfix in (
       headers:
         X-API-KEY: "{{ mta_api_key }}"
     parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
+      custom: 'transiter_ny_mta:SubwayTripsParser'
     auto_update:
       period: {{ update_periodicity or '5' }} seconds
 {% endfor %}
