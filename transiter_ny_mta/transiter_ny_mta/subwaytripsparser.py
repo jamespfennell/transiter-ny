@@ -1,10 +1,10 @@
 import enum
 import sys
+import typing
 
 from transiter import parse
 from transiter.parse.gtfsrealtime import TRANSITER_EXTENSION_ID
 from transiter_ny_mta.proto import subwaytrips_pb2 as gtfs_rt_pb2
-import typing
 
 
 class SubwayTripsParser(parse.GtfsRealtimeParser):

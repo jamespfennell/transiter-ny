@@ -1,7 +1,7 @@
 import csv
+import typing
 
 from transiter import parse
-import typing
 
 # Some stops in the system can be broken up into two directions by using
 # the track field that is provided in the MTA's GTFS Realtime feed. The following
@@ -30,7 +30,6 @@ D26N,A2,Franklin Avenue,{MANHATTAN}
 
 
 class StationsCsvParser(parse.TransiterParser):
-
     def load_content(self, content: bytes) -> None:
         self._content = content
 

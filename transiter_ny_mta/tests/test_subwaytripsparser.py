@@ -4,8 +4,8 @@ import pytest
 import pytz
 from transiter import parse
 from transiter_ny_mta import SubwayTripsParser
-from transiter_ny_mta.subwaytripsparser import _MtaDirection
 from transiter_ny_mta.proto import subwaytrips_pb2 as gtfs
+from transiter_ny_mta.subwaytripsparser import _MtaDirection
 
 ALERT_ID = "alert_id"
 TRIP_ID = "trip_id"
