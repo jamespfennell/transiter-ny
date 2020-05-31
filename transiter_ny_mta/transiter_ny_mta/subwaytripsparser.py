@@ -18,7 +18,8 @@ class SubwayTripsParser(parse.GtfsRealtimeParser):
     def get_trips(self) -> typing.Iterable[parse.Trip]:
         for trip in super().get_trips():
             _invert_m_train_direction_in_bushwick(trip)
-            yield trip
+            if _fix_route_ids(trip):
+                yield trip
 
 
 class _MtaDirection(enum.Enum):
@@ -59,9 +60,11 @@ def _move_data_between_extensions(feed_message):
             else:
                 is_assigned = False
             if not sub_entity.HasField("vehicle") and is_assigned:
-                sub_entity.vehicle.id = _create_vehicle_id_from_trip_desc(
-                    mta_ext, sub_entity.trip.trip_id
-                )
+                if mta_ext.HasField("train_id"):
+                    vehicle_id = mta_ext.train_id
+                else:
+                    vehicle_id = "vehicle_" + sub_entity.trip.trip_id
+                sub_entity.vehicle.id = vehicle_id
 
         if not entity.HasField("trip_update"):
             continue
@@ -84,6 +87,14 @@ def _move_data_between_extensions(feed_message):
             transiter_ext.track = track
 
 
+def _fix_route_ids(trip: parse.Trip):
+    if trip.route_id == "5X":
+        trip.route_id = "5"
+    if trip.route_id == "" or trip.route_id == "SS":
+        return False
+    return True
+
+
 def _invert_m_train_direction_in_bushwick(trip: parse.Trip):
     route_id = trip.route_id
     if route_id != "M":
@@ -94,20 +105,6 @@ def _invert_m_train_direction_in_bushwick(trip: parse.Trip):
         if stop_id[:3] not in {"M11", "M12", "M13", "M14", "M16", "M18"}:
             continue
         stop_time.stop_id = stop_id[:3] + flipper[stop_id[3]]
-
-
-# TODO: fix next stop in vehicle position
-# TODO: all of the trip cleaners
-# - def fix_route_ids(trip):
-# - def invert_m_train_direction_in_bushwick
-# - delete old scheduled trips?
-
-
-def _create_vehicle_id_from_trip_desc(mta_ext, trip_id):
-    if mta_ext.HasField("train_id"):
-        return mta_ext.train_id
-    else:
-        return "vehicle_" + trip_id
 
 
 if __name__ == "__main__":

@@ -157,7 +157,6 @@ STOP_IDS_TO_INVERT = {"M11", "M12", "M13", "M14", "M16", "M18"}
     ],
 )
 def test_invert_stop_id_direction_in_bushwick(route_id, stop_id, expected_stop_id):
-
     message = gtfs.FeedMessage(
         header=gtfs.FeedHeader(gtfs_realtime_version="2.0"),
         entity=[
@@ -183,3 +182,34 @@ def test_invert_stop_id_direction_in_bushwick(route_id, stop_id, expected_stop_i
     actual_trips = list(parser.get_trips())
 
     assert [expected_trip] == actual_trips
+
+
+@pytest.mark.parametrize(
+    "route_id,actual_route_id,valid_trip",
+    [["5", "5", True], ["5X", "5", True], ["", "", False], ["SS", "", False]],
+)
+def test_fix_route_ids(route_id, actual_route_id, valid_trip):
+    message = gtfs.FeedMessage(
+        header=gtfs.FeedHeader(gtfs_realtime_version="2.0"),
+        entity=[
+            gtfs.FeedEntity(
+                id="1",
+                trip_update=gtfs.TripUpdate(
+                    trip=gtfs.TripDescriptor(trip_id=TRIP_ID, route_id=route_id),
+                ),
+            )
+        ],
+    )
+
+    expected_trip = parse.Trip(
+        id=TRIP_ID, route_id=actual_route_id, direction_id=False,
+    )
+
+    parser = SubwayTripsParser()
+    parser.load_content(message.SerializeToString())
+    actual_trips = list(parser.get_trips())
+
+    if valid_trip:
+        assert [expected_trip] == actual_trips
+    else:
+        assert [] == actual_trips
