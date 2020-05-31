@@ -1,10 +1,7 @@
-"""
-This Python 3.6+ script uses an official MTA resource and custom data in order to
-generate the two direction name CSVs for the NYC subway.
-"""
 import csv
 
-from transiter import parse as transiter_parse
+from transiter import parse
+import typing
 
 # Some stops in the system can be broken up into two directions by using
 # the track field that is provided in the MTA's GTFS Realtime feed. The following
@@ -32,43 +29,48 @@ D26N,A2,Franklin Avenue,{MANHATTAN}
 """
 
 
-# Additional arguments are accepted for forwards compatibility
-# noinspection PyUnusedLocal
-def parse(binary_content, *args, **kwargs):
-    priority = 0
-    special_stop_id_to_basic_name = {}
+class StationsCsvParser(parse.TransiterParser):
 
-    csv_reader = csv.DictReader(SPECIAL_STOPS_CSV.strip().splitlines())
-    for row in csv_reader:
-        special_stop_id_to_basic_name[row["stop_id"]] = row["basic_name"]
-        yield transiter_parse.DirectionRule(
-            id=str(priority),
-            priority=priority,
-            stop_id=row["stop_id"],
-            name=row["track_name"],
-            track=row["track"],
-        )
-        priority += 1
+    def load_content(self, content: bytes) -> None:
+        self._content = content
 
-    csv_reader = csv.DictReader(binary_content.decode("utf-8").splitlines())
-    for row in csv_reader:
-        stop_id_to_name = {
-            row["GTFS Stop ID"] + "N": clean_mta_name(row["North Direction Label"]),
-            row["GTFS Stop ID"] + "S": clean_mta_name(row["South Direction Label"]),
-        }
-        for stop_id, name in stop_id_to_name.items():
-            name = special_stop_id_to_basic_name.get(stop_id, name)
-            yield transiter_parse.DirectionRule(
+    def get_direction_rules(self) -> typing.Iterable[parse.DirectionRule]:
+        priority = 0
+        special_stop_id_to_basic_name = {}
+
+        csv_reader = csv.DictReader(SPECIAL_STOPS_CSV.strip().splitlines())
+        for row in csv_reader:
+            special_stop_id_to_basic_name[row["stop_id"]] = row["basic_name"]
+            yield parse.DirectionRule(
                 id=str(priority),
                 priority=priority,
-                stop_id=stop_id,
-                name=name,
-                track=None,
+                stop_id=row["stop_id"],
+                name=row["track_name"],
+                track=row["track"],
             )
             priority += 1
 
+        csv_reader = csv.DictReader(self._content.decode("utf-8").splitlines())
+        for row in csv_reader:
+            stop_id_to_name = {
+                row["GTFS Stop ID"]
+                + "N": self._clean_mta_name(row["North Direction Label"]),
+                row["GTFS Stop ID"]
+                + "S": self._clean_mta_name(row["South Direction Label"]),
+            }
+            for stop_id, name in stop_id_to_name.items():
+                name = special_stop_id_to_basic_name.get(stop_id, name)
+                yield parse.DirectionRule(
+                    id=str(priority),
+                    priority=priority,
+                    stop_id=stop_id,
+                    name=name,
+                    track=None,
+                )
+                priority += 1
 
-def clean_mta_name(mta_name):
-    if mta_name.strip() == "":
-        return "(Terminating trains)"
-    return mta_name.strip().replace("&", "and")
+    @staticmethod
+    def _clean_mta_name(mta_name):
+        if mta_name.strip() == "":
+            return "(Terminating trains)"
+        return mta_name.strip().replace("&", "and")
