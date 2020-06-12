@@ -15,6 +15,17 @@ feeds:
       url: 'http://web.mta.info/developers/data/nyct/subway/google_transit.zip'
     parser:
       built_in: GTFS_STATIC
+      options:
+        transfers:
+          strategy: GROUP_STATIONS
+          exceptions:
+            - - "254"  # Livonia Av and Julius St.
+              - "L26"
+            - - "B08"  # Lexington Av/63rd St and Lexington Av/59th St.
+              - "629"
+            - - "B08"  # Lexington Av/63rd St and Lexington Av/59th St.
+              - "R11"
+
     required_for_install: true
     auto_update:
       enabled: false
