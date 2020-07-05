@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="transiter_ny-mta",
+    name="transiter-ny-mta",
     version="0.1.0rc1",
     author="James Fennell",
     author_email="jamespfennell@gmail.com",

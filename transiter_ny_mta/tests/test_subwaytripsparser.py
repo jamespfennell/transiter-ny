@@ -88,7 +88,10 @@ def test_create_vehicle(
     if expect_vehicle:
         assert [expected_vehicle] == actual_vehicles
     else:
-        assert [] == actual_vehicles
+        if entity_type is gtfs.VehiclePosition:
+            assert [parse.Vehicle(id=None, trip_id=TRIP_ID)] == actual_vehicles
+        else:
+            assert [] == actual_vehicles
 
 
 @pytest.mark.parametrize(
