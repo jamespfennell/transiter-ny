@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="transiter-ny-mta",
-    version="0.1.0rc1",
+    version="0.1.0",
     author="James Fennell",
     author_email="jamespfennell@gmail.com",
     description="Transiter parsers for NY MTA transit systems (subway, LIRR, MetroNorth)",
