@@ -12,10 +12,10 @@ The Subway and PATH train are currently supported; additional
 The PATH Train is simple to install:
 
     curl -X PUT $TRANSITER_SERVER/systems/us-ny-path \
-        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/nyc_subway_transiter_config.yaml'  
+        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-ny/master/transiter_config_path_train.yaml'
 
 
-## Usage notes
+### Usage notes
 
 The Port Authority unfortunately does not distribute real time data directly.
 The realtime data used by Transiter with this install comes
@@ -43,12 +43,12 @@ To install the subway with system ID `us-ny-subway`, execute the following HTTP 
 
     curl -X PUT $TRANSITER_SERVER/systems/us-ny-subway \
         -F 'mta_api_key=$YOUR_MTA_API_KEY' \
-        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-nycsubway/master/nyc_subway_transiter_config.yaml'
+        -F 'config_file=https://raw.githubusercontent.com/jamespfennell/transiter-ny/master/transiter_config_nyc_subway.yaml'
         
 The install will take up to 75 seconds - most of this time is spent
 inserting the half a million timetable entries into the database.
 
-## Usage notes
+### Usage notes
 
 The system's YAML configuration contains some sane defaults:
 
