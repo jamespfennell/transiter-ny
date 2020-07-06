@@ -15,6 +15,17 @@ feeds:
       url: 'http://web.mta.info/developers/data/nyct/subway/google_transit.zip'
     parser:
       built_in: GTFS_STATIC
+      options:
+        transfers:
+          strategy: GROUP_STATIONS
+          exceptions:
+            - - "254"  # Livonia Av and Julius St.
+              - "L26"
+            - - "B08"  # Lexington Av/63rd St and Lexington Av/59th St.
+              - "629"
+            - - "B08"  # Lexington Av/63rd St and Lexington Av/59th St.
+              - "R11"
+
     required_for_install: true
     auto_update:
       enabled: false
@@ -23,20 +34,22 @@ feeds:
     http:
       url: 'http://web.mta.info/developers/data/nyct/subway/Stations.csv'
     parser:
-      custom: 'transiter_nycsubway.stationscsvparser:parse'
+      custom: 'transiter_ny_mta:StationsCsvParser'
     required_for_install: true
     auto_update:
       enabled: false
 
-  ServiceStatus:
+  gtfsrealtime-alerts:
     http:
-      url: 'http://web.mta.info/status/ServiceStatusSubway.xml'
+      url: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts"
+      headers:
+        X-API-KEY: "{{ mta_api_key }}"
     parser:
-      custom: 'transiter_nycsubway.servicestatusxmlparser:parse'
+      custom: "transiter_ny_mta:AlertsParser"
     auto_update:
       period: {{ update_periodicity or '5' }} seconds
 
-{%
+  {%
 for id_, mta_url_postfix in (
     ("7", "-7"),
     ("123456", ""),
@@ -55,7 +68,7 @@ for id_, mta_url_postfix in (
       headers:
         X-API-KEY: "{{ mta_api_key }}"
     parser:
-      custom: 'transiter_nycsubway.gtfsrealtimeparser:parse'
+      custom: 'transiter_ny_mta:SubwayTripsParser'
     auto_update:
       period: {{ update_periodicity or '5' }} seconds
 {% endfor %}

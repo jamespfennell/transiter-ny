@@ -1,6 +1,3 @@
-tests:
-	pytest  --cov=transiter_nycsubway
-
 package:
 	rm -rf dist 
 	rm -rf build
