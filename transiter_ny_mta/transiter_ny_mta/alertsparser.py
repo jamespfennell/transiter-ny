@@ -1,4 +1,5 @@
 import enum
+import os
 
 from transiter.parse import Alert
 from transiter.parse import gtfsrealtime
@@ -52,9 +53,30 @@ class AlertsParser(gtfsrealtime.GtfsRealtimeParser):
 
     GTFS_REALTIME_PB2_MODULE = gtfs_rt_pb2
 
+    def get_alerts(self):
+        for alert in super().get_alerts():
+            if _should_skip_alert(alert):
+                continue
+            yield alert
+
     @staticmethod
     def post_process_feed_message(feed_message):
         _move_data_between_extensions(feed_message)
+
+
+_NON_ALERT_HEADERS = {
+    "weekend service",
+    "weekday service",
+}
+
+
+def _should_skip_alert(alert) -> bool:
+    if os.environ.get("TRANSITER_NY_MTA_KEEP_NON_ALERTS") == "true":
+        return False
+    for message in alert.messages:
+        if message.header.strip().lower() in _NON_ALERT_HEADERS:
+            return True
+    return False
 
 
 def _move_data_between_extensions(feed_message):

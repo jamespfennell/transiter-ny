@@ -65,6 +65,31 @@ def test_missing_entity_selector():
     assert expected_alerts == actual_alerts
 
 
+@pytest.mark.parametrize(
+    "header_text",
+    ["Weekend Service", " Weekend Service ", "weekend service", "Weekday Service"],
+)
+def test_skip_non_alerts(header_text):
+    alert = gtfs_rt_pb2.Alert(
+        header_text=gtfs_rt_pb2.TranslatedString(
+            translation=[
+                gtfs_rt_pb2.TranslatedString.Translation(
+                    text=header_text, language="any language works"
+                )
+            ]
+        ),
+    )
+
+    feed_message = gtfs_rt_pb2.FeedMessage(
+        header=gtfs_rt_pb2.FeedHeader(gtfs_realtime_version="2.0"),
+        entity=[gtfs_rt_pb2.FeedEntity(id=ALERT_ID, alert=alert)],
+    )
+    parser = alertsparser.AlertsParser()
+    parser.load_content(feed_message.SerializeToString())
+
+    assert [] == list(parser.get_alerts())
+
+
 @pytest.mark.parametrize("priority_string", ["MTA:1000", "blah"])
 def test_bad_priority_string(priority_string):
     informed_entity = gtfs_rt_pb2.EntitySelector()
